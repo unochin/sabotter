@@ -21,7 +21,7 @@ class OauthsController < ApplicationController
         @user.access_token = @access_token.token
         @user.access_token_secret = @access_token.secret
         @user.save
-        redirect_to user_path(@user), :notice => "Logged in from #{provider.titleize}!"
+        redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
       rescue
         redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
       end

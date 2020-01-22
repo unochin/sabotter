@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  get 'oauths/oauth'
-  get 'oauths/callback'
+  root to: 'static_pages#home'
+  get 'static_pages/mission'
+
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+  post 'logout' => 'oauths#destroy', :as => :logout
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
