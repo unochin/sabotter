@@ -80,7 +80,7 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [:twitter]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -106,11 +106,15 @@ Rails.application.config.sorcery.configure do |config|
   #
   # Twitter will not accept any requests nor redirect uri containing localhost,
   # Make sure you use 0.0.0.0:3000 to access your app in development
-  #
-  # config.twitter.key = ""
-  # config.twitter.secret = ""
-  # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
-  # config.twitter.user_info_mapping = {:email => "screen_name"}
+
+  config.twitter.key = Rails.application.credentials.twitter[:api_key]
+  config.twitter.secret = Rails.application.credentials.twitter[:api_secret_key]
+  # TODO 環境ごとにcallback_urlを変える
+  config.twitter.callback_url = "http://127.0.0.1:3000/oauth/callback"
+  config.twitter.user_info_mapping = {
+    name: 'name',
+    icon_img_url: 'profile_image_url_https',
+  }
   #
   # config.facebook.key = ""
   # config.facebook.secret = ""
@@ -507,7 +511,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = Authentication
 
     # User's identifier in the `authentications` class.
     # Default: `:user_id`
