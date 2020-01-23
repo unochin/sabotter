@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_173540) do
     t.string "access_token_secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["access_token"], name: "index_users_on_access_token", unique: true
+    t.index ["access_token", "access_token_secret"], name: "index_users_on_access_token_and_access_token_secret", unique: true
   end
 
 end
