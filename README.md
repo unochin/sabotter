@@ -42,7 +42,7 @@
 やるべきことはわかっているのに、サボってしまう人。
 
 ## 画面遷移図
-https://xd.adobe.com/view/b9012b7a-ab2d-49d1-5dc6-7ccd82bd78d4-cf30/
+https://xd.adobe.com/view/1fdfdd75-ea5d-4fab-5e1c-70030f95c724-69ee/
 
 ## ERD
 https://drive.google.com/file/d/15d9V1F65zqWYrTHZBhijolAPPt11K3pF/view?usp=sharing
