@@ -12,8 +12,6 @@ gem 'puma', '~> 3.11'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -36,7 +34,6 @@ gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
-gem 'webpacker'
 
 # UI/UX
 gem 'rails-i18n'
