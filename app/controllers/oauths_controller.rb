@@ -9,6 +9,9 @@ class OauthsController < ApplicationController
 
   def callback
     provider = 'twitter'
+    # ユーザーがアカウントへのアクセスを許可しなかった場合
+    redirect_to root_path and return if params[:denied].present?
+
     if @user = login_from(provider)
       redirect_to root_path(@user), :notice => "Logged in from #{provider.titleize}!"
     else
