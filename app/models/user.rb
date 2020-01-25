@@ -7,5 +7,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :access_token, presence: true
   validates :access_token_secret, presence: true
-  validates :access_token, uniqueness: { scope: :access_token_secret}
+  validates :access_token, uniqueness: { scope: :access_token_secret }
 end
