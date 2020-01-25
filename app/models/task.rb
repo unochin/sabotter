@@ -12,7 +12,7 @@ class Task < ApplicationRecord
   enum pause_flag: { active: 0, pause: 1 }
   enum status: { todo: 0, done: 1 }
 
-  validates :title, presence: true, maximum: { maximum: 50 }
+  validates :title, presence: true, length: { maximum: 50 }
   validates :tweet_datetime, presence: true
   validates :repeat_flag, presence: true
   validates :tweet_content, presence: true, length: { maximum: 140 }
