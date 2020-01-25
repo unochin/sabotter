@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_024414) do
+ActiveRecord::Schema.define(version: 2020_01_25_161728) do
 
   create_table "authentications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -19,6 +19,23 @@ ActiveRecord::Schema.define(version: 2020_01_25_024414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+  end
+
+  create_table "one_time_tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "task_id"
+    t.datetime "tweet_datetime", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_one_time_tweets_on_task_id"
+  end
+
+  create_table "repeat_tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "task_id"
+    t.time "tweet_time", null: false
+    t.integer "tweet_wday", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_repeat_tweets_on_task_id"
   end
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -43,5 +60,7 @@ ActiveRecord::Schema.define(version: 2020_01_25_024414) do
     t.index ["access_token", "access_token_secret"], name: "index_users_on_access_token_and_access_token_secret", unique: true
   end
 
+  add_foreign_key "one_time_tweets", "tasks"
+  add_foreign_key "repeat_tweets", "tasks"
   add_foreign_key "tasks", "users"
 end
