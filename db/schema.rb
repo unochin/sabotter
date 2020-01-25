@@ -23,19 +23,10 @@ ActiveRecord::Schema.define(version: 2020_01_25_024414) do
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
-    t.datetime "tweet_datetime", null: false
-    t.time "tweet_time"
-    t.integer "repeat_flag", default: 0, null: false
-    t.integer "tweet_sun"
-    t.integer "tweet_mon"
-    t.integer "tweet_tue"
-    t.integer "tweet_wed"
-    t.integer "tweet_thu"
-    t.integer "tweet_fri"
-    t.integer "tweet_sat"
     t.text "tweet_content", null: false
-    t.integer "status", default: 0, null: false
+    t.integer "repeat_flag", default: 0, null: false
     t.integer "pause_flag", default: 0, null: false
+    t.integer "status", default: 0, null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
