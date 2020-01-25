@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title
+      | Sabotter
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  body
+    #nav
+      - if current_user
+        = link_to "Logout", :logout, method: :post
+      -  else
+        = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
+
+    .container
+      p#notice = flash[:notice]
+      p#alert = flash[:alert]
+
+      = yield
