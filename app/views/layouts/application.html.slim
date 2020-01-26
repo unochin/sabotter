@@ -16,7 +16,7 @@ html
         = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
 
     .container
-      p#notice = flash[:notice]
-      p#alert = flash[:alert]
+      #js-flash-message
+        = render 'shared/flash_message'
 
       = yield
