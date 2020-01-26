@@ -14,3 +14,30 @@
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+}
+body {
+  padding: 30px;
+  background-color: rgb(21, 32, 43);
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: "Hiragino Kaku Gothic ProN",  Meiryo,  sans-serif;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+
+/* --------------------------------
+ * button
+ * -------------------------------- */
+.new-task-btn {
+  color: #fff;
+  background-color: rgb(29, 161, 242);
+}
