@@ -6,20 +6,12 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     respond_to do |format|
-      if @task.one_time?
+      # エラーメッセージがなければtask作成成功
+      if @task.one_time? && !save_one_time_tweet(@task)
+        format.js { flash[:success] = 'タスクを作成しました！' }
         # エラーメッセージがなければtask作成成功
-        if !save_one_time_tweet(@task)
-          format.js { flash[:success] = 'タスクを作成しました！' }
-        else
-          format.js { flash[:danger] = 'タスクを作成できませんでした' }
-        end
-      elsif @task.repeat?
-        # エラーメッセージがなければtask作成成功
-        if !save_repeat_tweet(@task)
-          format.js { flash[:success] = 'タスクを作成しました！' }
-        else
-          format.js { flash[:danger] = 'タスクを作成できませんでした' }
-        end
+      elsif @task.repeat? && !save_repeat_tweet(@task)
+        format.js { flash[:success] = 'タスクを作成しました！' }
       else
         format.js { flash[:danger] = 'タスクを作成できませんでした' }
       end
