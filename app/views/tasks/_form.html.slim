@@ -10,7 +10,7 @@
           = f.label :title, class: 'col-form-label'
           = f.text_field :title, class: 'form-control'
         .form-group#js-repeatFlag
-          = f.check_box :repeat_flag, class: 'mr-1'
+          = f.check_box :repeat_flag, { class: 'mr-1' }, 'repeat', 'one_time'
           = f.label :repeat_flag, 'repeat'
 
         .form-group#js-tweetDateTime
@@ -18,20 +18,20 @@
           = f.datetime_select :tweet_datetime, {start_year: Time.current.year, default: Time.current}
 
         .form_group#js-wday style='display:none'
-          = f.check_box :tweet_sun, class: 'mr-1', checked: 'checked'
-          = f.label :tweet_sun, 'Sun'
-          = f.check_box :tweet_mon, class: 'ml-3 mr-1'
-          = f.label :tweet_mon, 'Mon'
-          = f.check_box :tweet_tue, class: 'ml-3 mr-1'
-          = f.label :tweet_tue, 'Tue'
-          = f.check_box :tweet_wed, class: 'ml-3 mr-1'
-          = f.label :tweet_wed, 'Wed'
-          = f.check_box :tweet_thu, class: 'ml-3 mr-1'
-          = f.label :tweet_thu, 'Thu'
-          = f.check_box :tweet_fri, class: 'ml-3 mr-1'
-          = f.label :tweet_fri, 'Fri'
-          = f.check_box :tweet_sat, class: 'ml-3 mr-1'
-          = f.label :tweet_sat, 'Sat'
+          = f.check_box :sun, class: 'mr-1'
+          = f.label :sun, 'Sun'
+          = f.check_box :mon, class: 'ml-3 mr-1'
+          = f.label :mon, 'Mon'
+          = f.check_box :tue, class: 'ml-3 mr-1'
+          = f.label :tue, 'Tue'
+          = f.check_box :wed, class: 'ml-3 mr-1'
+          = f.label :wed, 'Wed'
+          = f.check_box :thu, class: 'ml-3 mr-1'
+          = f.label :thu, 'Thu'
+          = f.check_box :fri, class: 'ml-3 mr-1'
+          = f.label :fri, 'Fri'
+          = f.check_box :sat, class: 'ml-3 mr-1'
+          = f.label :sat, 'Sat'
 
         .form-group#js-tweetTime style='display:none'
           = f.label :tweet_time
@@ -40,6 +40,6 @@
           = f.label :tweet_content
           = f.text_area :tweet_content, cols: '50', rows: '3', class: 'form-control', placeholder: '140字以内'
 
-    .modal-footer
-      button type="button" class="btn btn-secondary" data-dismiss="modal" Close
-      button type="button" class="btn btn-info" Save
+        .modal-footer
+          button type="button" class="btn btn-secondary" data-dismiss="modal" Close
+          = f.button :Save, class:'btn btn-info'
