@@ -1,0 +1,10 @@
+ul.list-inline.justify-content-center id="js-taskCrudList-#{task.id}" style="float: right;"
+  - if task.done?
+    li.list-inline-item
+     | 完了済
+  - else
+    li.list-inline-item id="js-taskEdit-#{task.id}" class='click-icon mr-3'
+      i.js-taskEdit.fas.fa-pencil-alt.font-awesome data-task-id='#{task.id}'
+  li.list-inline-item
+    = link_to '#', class: 'js-taskDelete click-icon', data: { confirm: '削除しますか？', url: "#{user_task_path(task.user.id, task.id)}", taskid: "#{task.id}" } do
+      i.fas.fa-trash-alt.font-awesome

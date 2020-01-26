@@ -1,1 +1,13 @@
-p = "#{task.id} #{task.title}"
+.task-wrapper.mb-3.py-3
+  .task-boder.border-bottom.border-secondary.pb-2
+    .task-title
+      = task.title
+    .icon-menus
+      div id="js-taskCrudMenus-#{task.id}"
+        = render 'tasks/crud_menus', { user: task.user, task: task }
+    .tweet-time
+      - if task.repeat?
+        = render 'tasks/repeat_wday', task: task
+      - if task.one_time?
+        = task.one_time_tweet.tweet_datetime.strftime('%Y-%m-%d %H:%M')
+
