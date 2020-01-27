@@ -1,4 +1,4 @@
-- if @errors.blank?
+- if @task.errors.blank?
   | $("#js-newTaskModal").modal("hide");
   | $("#js-newTaskModal").children().remove();
   | $("#js-taskList").append("
@@ -10,5 +10,5 @@
   | ");
 - else
   | $('#js-errorMessage').html("
-  = j(render 'shared/error_message', errors: @errors)
+  = j(render('shared/error_message', errors: @task.errors.full_messages))
   | ");

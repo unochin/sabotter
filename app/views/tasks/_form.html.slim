@@ -36,8 +36,8 @@
           = f.label :tweet_sat, 'Sat'
 
         .form-group#js-tweetTime style='display:none'
-          = f.label :tweet_time
-          = f.time_select :tweet_time
+          = f.label :repeat_tweet_time
+          = f.time_select :repeat_tweet_time
         .form-group
           = f.label :tweet_content
           = f.text_area :tweet_content, cols: '50', rows: '3', class: 'form-control', placeholder: '140字以内'
