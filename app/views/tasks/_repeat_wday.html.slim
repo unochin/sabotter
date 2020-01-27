@@ -1,15 +1,14 @@
-- task.repeat_tweets.each do |repeat|
-  - if repeat.tweet_wday == 0
-    span.mr-2 日
-  - elsif repeat.tweet_wday == 1
-    span.mr-2 月
-  - elsif repeat.tweet_wday == 2
-    span.mr-2 火
-  - elsif repeat.tweet_wday == 3
-    span.mr-2 水
-  - elsif repeat.tweet_wday == 4
-    span.mr-2 木
-  - elsif repeat.tweet_wday == 5
-    span.mr-2 金
-  - elsif repeat.tweet_wday == 6
-    span.mr-2 土
+- if task.tweet_sun == 1
+  span.mr-2 日
+- elsif task.tweet_mon == 1
+  span.mr-2 月
+- elsif task.tweet_tue == 1
+  span.mr-2 火
+- elsif task.tweet_wed == 1
+  span.mr-2 水
+- elsif task.tweet_thu == 1
+  span.mr-2 木
+- elsif task.tweet_fri == 1
+  span.mr-2 金
+- elsif task.tweet_sat == 1
+  span.mr-2 土

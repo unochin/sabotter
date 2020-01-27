@@ -2,14 +2,14 @@
   div id="js-errorMessage-#{task.id}"
     = render 'shared/error_message', errors: @errors
     - if task.one_time?
-      .group-form
+      .group-form.datetime-select
         = f.label 'tweet_datetime', class: 'mr-2'
-        = f.datetime_select id="js-editTweetDateTime-#{task.id}", {start_year: Time.current.year, default: task.one_time_tweet.tweet_datetime}
+        = f.datetime_select id="js-editTweetDateTime-#{task.id}", {start_year: Time.current.year, default: task.tweet_datetime}
 
     - if task.repeat?
-      .group-form
+      .group-form.datetime-select
         = f.label 'tweet_time', class: 'mr-2'
-        = f.time_select id="js-editTweetTime-#{task.id}", { default: task.repeat_tweets.first.tweet_time }
+        = f.time_select id="js-editTweetTime-#{task.id}", { default: task.repeat_tweet_time }
 
       .form_group
         input type='checkbox' id="js-sun-#{task.id}" class='mr-1' name="editTweetWday-#{task.id}" value='sun'

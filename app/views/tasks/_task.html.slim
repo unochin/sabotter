@@ -11,7 +11,7 @@
       - if task.repeat?
         = render 'tasks/repeat_wday', task: task
       - if task.one_time?
-        = task.one_time_tweet.tweet_datetime.strftime('%Y-%m-%d %H:%M')
+        = task.tweet_datetime.strftime('%Y-%m-%d %H:%M')
 
     div id="js-editTask-#{task.id}" class='mt-5'
       = render 'tasks/edit_form', task: task
