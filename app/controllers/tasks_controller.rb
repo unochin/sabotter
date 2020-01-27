@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
   def edit; end
 
-  def udpate; end
+  def update; end
 
   def delete; end
 
