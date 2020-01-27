@@ -12,3 +12,7 @@
   | $('#js-errorMessage').html("
   = j(render('shared/error_message', errors: @task.errors.full_messages))
   | ");
+
+|  setTimeout(function() {
+|    $('.time-out').fadeOut('slow');
+|  }, 2500);

@@ -16,3 +16,9 @@
 // require turbolinks
 //= require popper
 //= require bootstrap-sprockets
+
+$(function() {
+    setTimeout(function() {
+      $('.time-out').fadeOut('slow');
+    }, 2500);
+});
