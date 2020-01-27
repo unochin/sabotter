@@ -3,12 +3,12 @@
     = render 'shared/error_message', errors: @errors
     - if task.one_time?
       .group-form
-        = f.label 'tweet_date', class: 'mr-2'
-        = f.datetime_select id="js-editTweetDateTime#{task.id}", {start_year: Time.current.year, default: task.one_time_tweet.tweet_datetime}
+        = f.label 'tweet_datetime', class: 'mr-2'
+        = f.datetime_select id="js-editTweetDateTime-#{task.id}", {start_year: Time.current.year, default: task.one_time_tweet.tweet_datetime}
 
     - if task.repeat?
       .group-form
-        = f.label 'tweet_date', class: 'mr-2'
+        = f.label 'tweet_time', class: 'mr-2'
         = f.time_select id="js-editTweetTime-#{task.id}", { default: task.repeat_tweets.first.tweet_time }
 
       .form_group
@@ -33,8 +33,8 @@
     .form-group
       = f.text_area id="js-editTweetContent-#{task.id}", class:'form-control mb-1', style:'display:block', cols: '50', rows: '3'
     a.js-taskEditCancel.btn.btn-secondary.mr-2 data-task-id='#{task.id}' cancel
-    a.js-taskUpdate.btn.submit-task-btn[data-url='#{user_task_path(task.user.id, task.id)}'
-      data-user-id='#{task.user.id}'
+    a.js-taskUpdate.btn.submit-task-btn[data-url='#{user_task_path(task.id)}'
+      data-user-id='#{current_user.id}'
       data-task-id='#{task.id}'
       ]
       |update
