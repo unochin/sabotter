@@ -16,7 +16,7 @@ html
         = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
 
     .container
-      #js-flash-message
+      #js-flash-message style="height: 50px"
         = render 'shared/flash_message'
 
       = yield
