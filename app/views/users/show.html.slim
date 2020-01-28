@@ -1,0 +1,17 @@
+.user-profile
+  p style='display:inline-block'
+    = current_user.name
+  img src="#{current_user.icon_img_url}" style='display:inline-block; height:48px; vertical-align: middle'
+
+.row
+  .offset-md-2.col-md-8
+    = link_to "New Task", new_user_task_path, remote: true, class: 'btn btn-info'
+
+  <!-- タスク新規作成モーダル -->
+    #js-newTaskModal.modal.fade tabindex="-1" role="dialog" aria-hidden="true"
+
+  <!-- タスク一覧 -->
+  #js-taskList
+    = render @tasks
+
+    = javascript_include_tag 'tasks/form.js'

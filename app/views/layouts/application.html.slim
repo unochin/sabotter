@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
     title
       | Sabotter
     = csrf_meta_tags
@@ -15,7 +16,7 @@ html
         = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
 
     .container
-      p#notice = flash[:notice]
-      p#alert = flash[:alert]
+      #js-flash-message style="height: 50px"
+        = render 'shared/flash_message'
 
       = yield

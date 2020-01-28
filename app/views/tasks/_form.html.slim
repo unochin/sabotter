@@ -1,0 +1,46 @@
+.modal-dialog.modal-dialog-centered role="document"
+  .modal-content
+    .modal-header
+      h5 class="modal-title"  New Task
+      button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        span aria-hidden="true" &times;
+    .modal-body
+      = form_with model: [current_user, task], remote: true do |f|
+        #js-errorMessage
+        .form-group
+          = f.label :title, class: 'col-form-label'
+          = f.text_field :title, class: 'form-control'
+        .form-group#js-repeatFlag
+          = f.check_box :repeat_flag, { class: 'mr-1' }, 'repeat', 'one_time'
+          = f.label :repeat_flag, 'repeat'
+
+        .form-group#js-tweetDateTime
+          = f.label :tweet_datetime, class: 'col-form-label d-block'
+          = f.datetime_select :tweet_datetime, {start_year: Time.current.year, default: Time.current}
+
+        .form_group#js-wday style='display:none'
+          = f.check_box :tweet_sun, class: 'mr-1'
+          = f.label :tweet_sun, 'Sun'
+          = f.check_box :tweet_mon, class: 'ml-3 mr-1'
+          = f.label :tweet_mon, 'Mon'
+          = f.check_box :tweet_tue, class: 'ml-3 mr-1'
+          = f.label :tweet_tue, 'Tue'
+          = f.check_box :tweet_wed, class: 'ml-3 mr-1'
+          = f.label :tweet_wed, 'Wed'
+          = f.check_box :tweet_thu, class: 'ml-3 mr-1'
+          = f.label :tweet_thu, 'Thu'
+          = f.check_box :tweet_fri, class: 'ml-3 mr-1'
+          = f.label :tweet_fri, 'Fri'
+          = f.check_box :tweet_sat, class: 'ml-3 mr-1'
+          = f.label :tweet_sat, 'Sat'
+
+        .form-group#js-tweetTime style='display:none'
+          = f.label :repeat_tweet_time
+          = f.time_select :repeat_tweet_time
+        .form-group
+          = f.label :tweet_content
+          = f.text_area :tweet_content, cols: '50', rows: '3', class: 'form-control', placeholder: '140字以内'
+
+        .modal-footer
+          button type="button" class="btn btn-secondary" data-dismiss="modal" Close
+          = f.button :Save, class:'btn btn-info'

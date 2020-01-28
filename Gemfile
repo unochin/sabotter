@@ -29,8 +29,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Assets
-gem 'bootstrap-sass'
-gem 'font-awesome-rails'
+gem 'bootstrap'
+gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
