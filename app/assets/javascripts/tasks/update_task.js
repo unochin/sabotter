@@ -6,48 +6,64 @@ $(function() {
     }
 
     let url = $(this).data('url');
-    console.log("url");
-    console.log(url);
     let taskId = $(this).data('task-id');
-    let taskEditTitle = $(`#js-taskEditTitle-${taskId}`).val();
-    let taskEditTweetContent = $(`#js-taskEditBody-${taskId}`).val();
-    let taskEditTweetDateYear  = $(`#_js-editTweetDateTime-${taskId}_1i`).val();
-    let taskEditTweetDateMonth  = $(`#_js-editTweetDateTime-${taskId}_2i`).val();
-    let taskEditTweetDateDay  = $(`#_js-tweet_date-${taskId}_3i`).val();
-    let taskEditTweetTimeHour  = $(`#_js-tweet_date-${taskId}_4i`).val();
-    let taskEditTweetTimeMinute  = $(`#_js-taskEditTweetTime-${taskId}_5i`).val();
+    let taskEditTitle = $(`#js-editTitle-${taskId}`).val();
+    let taskEditTweetContent = $(`#js-editTweetContent-${taskId}`).val();
     let taskEditRepeatFlag = 0;
-    let sun = 0;
-    let mon = 0;
-    let tue = 0;
-    let wed = 0;
-    let thu = 0;
-    let fri = 0;
-    let sat = 0;
+    // 繰り返しなしのタスク用変数
+    let taskEditTweetYear  = $(`#_js-editTweetDateTime-${taskId}_1i`).val();
+    let taskEditTweetMonth  = $(`#_js-editTweetDateTime-${taskId}_2i`).val();
+    let taskEditTweetDay  = $(`#_js-editTweetDateTime-${taskId}_3i`).val();
+    let taskEditTweetHour  = $(`#_js-editTweetDateTime-${taskId}_4i`).val();
+    let taskEditTweetMinute  = $(`#_js-editTweetDateTime-${taskId}_5i`).val();
+    // 繰り返しタスク用変数
+    let taskEditRepeatHour  = $(`#_js-editTweetTime-${taskId}_4i`).val();
+    let taskEditRepeatMinute  = $(`#_js-editTweetTime-${taskId}_5i`).val();
+    let sun;
+    let mon;
+    let tue;
+    let wed;
+    let thu;
+    let fri;
+    let sat;
 
     // yearがundefinedの時、taskは繰り返しであると判定する
-    if (taskEditTweetDateYear == undefined) {
+    if (taskEditTweetYear == undefined) {
       taskEditRepeatFlag = 1;
       if ($(`#js-sun-${taskId}`).prop('checked')) {
         sun = 1;
+      } else {
+        sun = 0;
       }
       if ($(`#js-mon-${taskId}`).prop('checked')) {
         mon = 1;
+      } else {
+        mon = 0;
       }
       if ($(`#js-tue-${taskId}`).prop('checked')) {
         tue = 1;
+      } else {
+        tue = 0;
       }
       if ($(`#js-wed-${taskId}`).prop('checked')) {
         wed = 1;
+      } else {
+        wed = 0;
       }
       if ($(`#js-thu-${taskId}`).prop('checked')) {
         thu = 1;
+      } else {
+        thu = 0;
       }
       if ($(`#js-fri-${taskId}`).prop('checked')) {
         fri = 1;
+      } else {
+        fri = 0
       }
       if ($(`#js-sat-${taskId}`).prop('checked')) {
         sat = 1;
+      } else {
+      sat = 0;
       }
     }
     $.ajax({
@@ -58,28 +74,37 @@ $(function() {
         'task': {
           'title': taskEditTitle
           , 'tweet_content': taskEditTweetContent
-          , 'repeat_flag': taskEditRepeatFlag
-          , 'tweet_date_year': taskEditTweetDateYear
-          , 'tweet_date_month': taskEditTweetDateMonth
-          , 'tweet_date_day': taskEditTweetDateDay
-          , 'tweet_time_hour': taskEditTweetTimeHour
-          , 'tweet_time_minute': taskEditTweetTimeMinute
-          , 'sun': sun
-          , 'mon': mon
-          , 'tue': tue
-          , 'wed': wed
-          , 'thu': thu
-          , 'fri': fri
-          , 'sat': sat
+          , 'tweet_year': taskEditTweetYear
+          , 'tweet_month': taskEditTweetMonth
+          , 'tweet_day': taskEditTweetDay
+          , 'tweet_hour': taskEditTweetHour
+          , 'tweet_minute': taskEditTweetMinute
+          , 'repeat_hour': taskEditRepeatHour
+          , 'repeat_minute': taskEditRepeatMinute
+          , 'tweet_sun': sun
+          , 'tweet_mon': mon
+          , 'tweet_tue': tue
+          , 'tweet_wed': wed
+          , 'tweet_thu': thu
+          , 'tweet_fri': fri
+          , 'tweet_sat': sat
         }
       }
     })
       .done( (data) => {
         if (taskEditTweetContent !== '') {
         $(`#js-taskTitle-${taskId}`).text(taskEditTitle);
-      //   $(`#js-taskBody-${taskId}`).html(taskEditTweetContent.replace(/\r?\n/g, '<br>'));
-        $(`#js-taskTweetDateTime-${taskId}`).text(data['tweet_datetime']);
-        $(`#js-editTweetContent-${taskId}`).css('display', 'none');
+        $(`#js-tweetContent-${taskId}`).html(taskEditTweetContent.replace(/\r?\n/g, '<br>'));
+        $(`#js-repeatTweetTime-${taskId}`).text(data['repeat_tweet_time']);
+        let wdaysHtml = '';
+        let wdays = ['日', '月', '火', '水', '木', '金', '土'];
+        for (var i = 0; i < data['wdays'].length; i++) {
+          if (data['wdays'][i] == 1) {
+          wdaysHtml += `<span class='mr-2'>${wdays[i]}</span>`;
+          }
+        }
+        $(`#js-repeatWdays-${taskId}`).html(wdaysHtml);
+        $(`#js-taskEditForm-${taskId}`).fadeOut(250);
         }
       })
       .fail( (data) => {

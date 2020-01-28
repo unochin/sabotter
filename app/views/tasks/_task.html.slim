@@ -9,7 +9,11 @@
         = render 'tasks/crud_menus', { user: task.user, task: task }
     div id="js-tweetTiming-#{task.id}"
       - if task.repeat?
-        = render 'tasks/repeat_wday', task: task
+        div id="js-repeatTweetTime-#{task.id}"
+          = task.repeat_tweet_time.strftime('%H:%M')
+        br
+        div id="js-repeatWdays-#{task.id}"
+          = render 'tasks/repeat_wday', task: task
       - if task.one_time?
         = task.tweet_datetime.strftime('%Y-%m-%d %H:%M')
 
