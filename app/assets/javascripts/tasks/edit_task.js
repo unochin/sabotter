@@ -18,8 +18,8 @@ $(function() {
       taskEditTitleArea.val(taskTitle)
       taskEditTweetContentArea.val(taskTweetContent)
 
-      // ツイートする日時(yyyy-MM-dd hh:mm)が表示されていない場合は、repeat_tweetとみなす
-      if ($(`#js-tweetTiming-${taskId}`).text().indexOf('-') === -1) {
+      // タスクの表示に'次の'が含まれている場合、繰り返しタスクとみなす
+      if ($(`#js-tweetTiming-${taskId} small`).text().indexOf('次の') !== -1) {
         let wdayText = $(`#js-tweetTiming-${taskId} span`).text();
         if (wdayText.indexOf('日') !== -1) {
           $(`#js-sun-${taskId}`).prop('checked', true);

@@ -30,4 +30,47 @@ class Task < ApplicationRecord
     end
   end
 
+  # 次にツイートする曜日を取得
+  def calc_next_tweet_wday(base_wday)
+    tweet_wdays = [
+                  tweet_sun, tweet_mon, tweet_tue, tweet_wed, tweet_thu, tweet_fri, tweet_sat,
+                  tweet_sun, tweet_mon, tweet_tue, tweet_wed, tweet_thu, tweet_fri, tweet_sat
+                  ]
+    next_tweet_wday = -1
+    tweet_wdays.each_with_index do |wday, i|
+      if i <= base_wday
+        next
+      end
+      if wday == 1
+        next_tweet_wday = i
+        break
+      end
+    end
+    next_tweet_wday = next_tweet_wday % 7
+    next_tweet_wday
+  end
+
+  # 次にツイートする日時を取得
+  def set_next_tweet_date(base_day)
+    if one_time?
+      return
+    end
+    wdays = %i[sunday monday tuesday wednesday thursday friday saturday]
+    tweet_wdays = [
+                   tweet_sun, tweet_mon, tweet_tue, tweet_wed, tweet_thu, tweet_fri, tweet_sat
+                  ]
+    tweet_time = self.repeat_tweet_time.to_s.split[1]
+    base_day_string = base_day.to_s
+    base_day_tweet_datetime = (base_day_string + ' ' + tweet_time).in_time_zone
+
+    if tweet_wdays[base_day.wday] == 1 && Time.current < base_day_tweet_datetime
+      self.tweet_datetime = today_tweet_datetime
+    else
+      next_tweet_wday = self.calc_next_tweet_wday(Time.current.wday)
+      # 基準となる日からみて、次の〇曜日の日付を取得
+      next_tweet_day = base_day.beginning_of_week(wdays[next_tweet_wday]).since(1.week).to_date.to_s
+      self.tweet_datetime = (next_tweet_day + ' ' + tweet_time).in_time_zone
+    end
+  end
+
 end
