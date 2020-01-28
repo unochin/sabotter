@@ -1,0 +1,40 @@
+= form_with id:"js-taskEditForm-#{task.id}", class: 'taskEditForm', local: 'true' do |f|
+  div id="js-errorMessage-#{task.id}"
+    = render 'shared/error_message', errors: @errors
+    - if task.one_time?
+      .group-form.datetime-select
+        = f.label 'tweet_datetime', class: 'mr-2'
+        = f.datetime_select id="js-editTweetDateTime-#{task.id}", {start_year: Time.current.year, default: task.tweet_datetime}
+
+    - if task.repeat?
+      .group-form.datetime-select
+        = f.label 'tweet_time', class: 'mr-2'
+        = f.time_select id="js-editTweetTime-#{task.id}", { default: task.repeat_tweet_time }
+
+      .form_group
+        input type='checkbox' id="js-sun-#{task.id}" class='mr-1' name="editTweetWday-#{task.id}" value='sun'
+        label for="js-sun-#{task.id}" Sun
+        input type='checkbox' id="js-mon-#{task.id}" class='ml-4 mr-1' name="editTweetWday-#{task.id}" value='mon'
+        label for="js-mon-#{task.id}" Mon
+        input type='checkbox' id="js-tue-#{task.id}" class='ml-4 mr-1' name="editTweetWday-#{task.id}" value='tue'
+        label for="js-tue-#{task.id}" Tue
+        input type='checkbox' id="js-wed-#{task.id}" class='ml-4 mr-1' name="editTweetWday-#{task.id}" value='wed'
+        label for="js-wed-#{task.id}" Wed
+        input type='checkbox' id="js-thu-#{task.id}" class='ml-4 mr-1' name="editTweetWday-#{task.id}" value='thu'
+        label for="js-thu-#{task.id}" Thu
+        input type='checkbox' id="js-fri-#{task.id}" class='ml-4 mr-1' name="editTweetWday-#{task.id}" value='fri'
+        label for="js-fri-#{task.id}" Fri
+        input type='checkbox' id="js-sat-#{task.id}" class='ml-4 mr-1' name="editTweetWday-#{task.id}" value='sat'
+        label for="js-sat-#{task.id}" Sat
+
+    .form-group
+      = f.text_field id="js-editTitle-#{task.id}", class: 'form-control', style:'display=block'
+
+    .form-group
+      = f.text_area id="js-editTweetContent-#{task.id}", class:'form-control mb-1', style:'display:block', cols: '50', rows: '3'
+    a.js-taskEditCancel.btn.btn-secondary.mr-2 data-task-id='#{task.id}' cancel
+    a.js-taskUpdate.btn.submit-task-btn[data-url='#{user_task_path(task.id)}'
+      data-user-id='#{current_user.id}'
+      data-task-id='#{task.id}'
+      ]
+      |update

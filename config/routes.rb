@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'tasks/new'
-  get 'tasks/create'
-  get 'tasks/edit'
-  get 'tasks/udpate'
-  get 'tasks/delete'
+  # get 'tasks/new'
+  # get 'tasks/create'
+  # get 'tasks/edit'
+  # get 'tasks/udpate'
+  # get 'tasks/delete'
   root to: 'static_pages#home'
   get 'static_pages/mission'
 

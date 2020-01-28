@@ -1,1 +1,21 @@
-p = "#{task.id} #{task.title}"
+.task-wrapper.mb-3.py-3
+  .task-border.border-bottom.border-secondary.pb-2
+    div id="js-taskTitle-#{task.id}"
+      = task.title
+    div id="js-tweetContent-#{task.id}"
+      = task.tweet_content
+    .icon-menus
+      div id="js-taskCrudMenus-#{task.id}"
+        = render 'tasks/crud_menus', { user: task.user, task: task }
+    div id="js-tweetTiming-#{task.id}"
+      - if task.repeat?
+        div id="js-repeatTweetTime-#{task.id}"
+          = task.repeat_tweet_time.strftime('%H:%M')
+        br
+        div id="js-repeatWdays-#{task.id}"
+          = render 'tasks/repeat_wday', task: task
+      - if task.one_time?
+        = task.tweet_datetime.strftime('%Y-%m-%d %H:%M')
+
+    div id="js-editTask-#{task.id}" class='mt-5'
+      = render 'tasks/edit_form', task: task
