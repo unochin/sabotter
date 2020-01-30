@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2020_01_25_024414) do
     t.string "icon_img_url"
     t.string "enc_access_token"
     t.string "enc_access_token_secret"
+    t.string "salt"
+    t.string "secret_salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["enc_access_token", "enc_access_token_secret"], name: "index_users_on_enc_access_token_and_enc_access_token_secret", unique: true

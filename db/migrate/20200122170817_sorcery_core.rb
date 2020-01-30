@@ -5,6 +5,8 @@ class SorceryCore < ActiveRecord::Migration[5.2]
       t.string :icon_img_url
       t.string :enc_access_token
       t.string :enc_access_token_secret
+      t.string :salt
+      t.string :secret_salt
 
       t.timestamps                null: false
     end
