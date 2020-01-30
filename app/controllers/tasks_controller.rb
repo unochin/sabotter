@@ -38,25 +38,19 @@ class TasksController < ApplicationController
   def destroy
     @task = current_user.tasks.find(params[:id])
     respond_to do |format|
-      if @task.destroy
-        format.js { flash[:success] = 'タスクを削除しました' }
-      else
-        format.js { flash[:danger] = 'タスクを削除できませんでした' }
-      end
+      @task.destroy!
+      format.js { flash[:success] = 'タスクを削除しました' }
     end
   end
 
   def toggle_pause_flag
     @task = current_user.tasks.find(params[:task_id])
     respond_to do |format|
-      if @task.toggle_pause_flag!
-        if @task.pause?
-          format.js { flash[:success] = 'タスクを休止しました！' }
-        elsif @task.active?
-          format.js { flash[:success] = 'タスクを再開しました！' }
-        end
-      else
-        format.js { flash[:danger] = 'タスクの状態を変更できませんでした' }
+      @task.toggle_pause_flag!
+      if @task.pause?
+        format.js { flash[:success] = 'タスクを休止しました！' }
+      elsif @task.active?
+        format.js { flash[:success] = 'タスクを再開しました！' }
       end
     end
   end
@@ -64,11 +58,8 @@ class TasksController < ApplicationController
   def finish
     @task = current_user.tasks.find(params[:task_id])
     respond_to do |format|
-      if @task.done!
-        format.js { flash[:success] = 'タスクを完了しました！' }
-      else
-        format.js { flash[:danger] = 'タスクが完了できませんでした' }
-      end
+      @task.done!
+      format.js { flash[:success] = 'タスクを完了しました！' }
     end
   end
 
