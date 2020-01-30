@@ -64,7 +64,7 @@ class Task < ApplicationRecord
     tweet_time = repeat_tweet_time.to_s.split[1]
     today = Time.current.to_date.to_s
     today_tweet_datetime = (today + ' ' + tweet_time).in_time_zone
-    base_day_string = base_day.to_s
+    base_day_string = base_day.to_date.to_s
     base_day_tweet_datetime = (base_day_string + ' ' + tweet_time).in_time_zone
 
     if tweet_wdays[base_day.wday] == 1 && Time.current < base_day_tweet_datetime

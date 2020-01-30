@@ -3,7 +3,7 @@ namespace :auto_tweet do
   task auto_tweet: :environment do
     current_datetime = Time.current.strftime("%Y-%m-%d %H:%M:00")
     begin
-      Task.find_each do |task|
+      Task.active.todo.find_each do |task|
         limit_datetime = task.tweet_datetime.strftime("%Y-%m-%d %H:%M:00")
         if current_datetime == limit_datetime
           task.auto_tweet
