@@ -31,9 +31,9 @@
 
   .form-group
     = f.text_area id="js-editTweetContent-#{task.id}", class:'form-control mb-1', style:'display:block', cols: '50', rows: '3'
-  a.js-taskEditCancel.btn.btn-secondary.mr-2 data-task-id='#{task.id}' cancel
-  a.js-taskUpdate.btn.submit-task-btn[data-url='#{user_task_path(task.id)}'
+  a.js-taskEditCancel.btn.btn-secondary.mr-2.py-1 data-task-id='#{task.id}' キャンセル
+  a.js-taskUpdate.btn.submit-task-btn.py-1[data-url='#{user_task_path(task.id)}'
     data-user-id='#{current_user.id}'
     data-task-id='#{task.id}'
     ]
-    |update
+    |更新

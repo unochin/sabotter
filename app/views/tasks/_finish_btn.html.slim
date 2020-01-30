@@ -1,4 +1,4 @@
 - if task.todo?
-  = link_to "完了する", finish_task_user_path(task.id), remote: true, method: :put, class: 'btn submit-task-btn mb-3', data: { confirm: 'タスクを完了しますか？' }
+  = link_to "完了にする", finish_task_user_path(task.id), remote: true, method: :put, class: 'btn submit-task-btn my-3 py-1', data: { confirm: 'タスクを完了しますか？' }
 - if task.done?
   | 完了済
