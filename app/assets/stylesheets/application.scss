@@ -73,10 +73,7 @@ color: #fff
 
 form select {
   height: 2.2rem;
-}
-
-.datetime-select {
-height: 50px
+  margin-bottom: 1rem;
 }
 
 
@@ -90,3 +87,11 @@ height: 50px
   top: 1rem;
   margin: auto;
 }
+
+/* --------------------------------
+ * others
+ * -------------------------------- */
+.more-info {
+  display: none;
+}
+

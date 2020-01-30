@@ -3,25 +3,19 @@ div id="js-task-#{task.id}" class='task-wrapper mb-1'
   .task-border.border-bottom.border-secondary.pb-2
     div id="js-taskTitle-#{task.id}" class='mt-2'
       = task.title
-    div id="js-tweetContent-#{task.id}"
-      = task.tweet_content
 
-    .icon-menus
-      div id='js-finish-task-#{task.id}' class='d-inline-block'
-        = render 'tasks/finish_btn', task: task
-      div id="js-taskCrudMenus-#{task.id}"  class='d-inline-block'
-        = render 'tasks/crud_menus', { user: task.user, task: task }
     div id="js-tweetTiming-#{task.id}"
       - if task.repeat?
-        div id="js-repeatTweetTime-#{task.id}"
-          = task.repeat_tweet_time.strftime('%H:%M')
-        br
-        div id="js-repeatWdays-#{task.id}"
-          = render 'tasks/repeat_wday', task: task
+        div id="js-repeatTiming-#{task.id}"
+          = render 'tasks/repeat_timing', task: task
 
       - if task.todo? && task.active?
         div id="js-nextTweetDatetime-#{task.id}"
           = render 'tasks/next_tweet_datetime', task: task
 
-    div id="js-editTask-#{task.id}" class='mt-5'
-      = render 'tasks/edit_form', task: task
+      div id='js-finish-task-#{task.id}' class='d-inline-block'
+        = render 'tasks/finish_btn', task: task
+
+      div id="js-more-info-#{task.id}" class='mt-3'
+        = render 'tasks/more_info_task', task: task
+

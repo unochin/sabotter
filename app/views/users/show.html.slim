@@ -16,6 +16,7 @@
     #js-taskList.offset-md-2.col-md-8
       = render @tasks
 
+      = javascript_include_tag 'tasks/general.js'
       = javascript_include_tag 'tasks/form.js'
       = javascript_include_tag 'tasks/edit_task.js'
       = javascript_include_tag 'tasks/update_task.js'

@@ -46,14 +46,6 @@ class TasksController < ApplicationController
     end
   end
 
-  def task_params
-    params.require(:task).permit(:title, :tweet_content, :repeat_flag, :tweet_datetime,
-                                 :repeat_tweet_time, :tweet_sun, :tweet_mon,
-                                 :tweet_tue, :tweet_wed, :tweet_thu, :tweet_fri,
-                                 :tweet_sat, :user_id
-                                )
-  end
-
   def toggle_pause_flag
     @task = current_user.tasks.find(params[:task_id])
     respond_to do |format|
@@ -78,6 +70,14 @@ class TasksController < ApplicationController
         format.js { flash[:danger] = 'タスクが完了できませんでした' }
       end
     end
+  end
+
+  def task_params
+    params.require(:task).permit(:title, :tweet_content, :repeat_flag, :tweet_datetime,
+                                 :repeat_tweet_time, :tweet_sun, :tweet_mon,
+                                 :tweet_tue, :tweet_wed, :tweet_thu, :tweet_fri,
+                                 :tweet_sat, :user_id
+                                )
   end
 
   def task_update_params
