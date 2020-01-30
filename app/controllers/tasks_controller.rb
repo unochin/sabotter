@@ -45,6 +45,21 @@ class TasksController < ApplicationController
                                 )
   end
 
+  def toggle_pause_flag
+    @task = current_user.tasks.find(params[:task_id])
+    respond_to do |format|
+      if @task.toggle_pause_flag!
+        if @task.pause?
+          format.js { flash[:success] = 'このタスクを休止しました！' }
+        elsif @task.active?
+          format.js { flash[:success] = 'このタスクを再開しました！' }
+        end
+      else
+        format.js { flash[:danger] = 'タスクの状態を変更できませんでした' }
+      end
+    end
+  end
+
   def task_update_params
     params.require(:task).permit(:title, :tweet_content, :tweet_sun, :tweet_mon,
                                  :tweet_tue, :tweet_wed, :tweet_thu, :tweet_fri,

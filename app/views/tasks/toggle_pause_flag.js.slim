@@ -1,0 +1,23 @@
+- if @task.errors.blank?
+  | $("#js-taskCrudList-#{@task.id}").children().remove();
+  | $("#js-nextTweetDatetime-#{@task.id}").children().remove();
+  | $("#js-task-flash-#{@task.id}").children().remove();
+
+  | $("#js-taskCrudList-#{@task.id}").append("
+  = j(render('crud_menus', task: @task))
+  | ");
+  | $("#js-task-flash-#{@task.id}").append("
+  = j(render('shared/flash_message'))
+  | ");
+  | $("#js-nextTweetDatetime-#{@task.id}").append("
+  = j(render('tasks/next_tweet_datetime', task: @task))
+  | ");
+- else
+  | $('#js-task-flash-#{@task.id}').html("
+  = j(render('shared/error_message', errors: @task.errors.full_messages))
+  | ");
+
+|  setTimeout(function() {
+|    $('.time-out').fadeOut('slow');
+|  }, 2500);
+

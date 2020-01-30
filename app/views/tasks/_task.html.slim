@@ -1,6 +1,7 @@
-.task-wrapper.mb-3.py-3
+div id="js-task-#{task.id}" class='task-wrapper mb-1'
+  div id="js-task-flash-#{task.id}" class='mb-2' style='height: 30px'
   .task-border.border-bottom.border-secondary.pb-2
-    div id="js-taskTitle-#{task.id}"
+    div id="js-taskTitle-#{task.id}" class='mt-2'
       = task.title
     div id="js-tweetContent-#{task.id}"
       = task.tweet_content
@@ -15,12 +16,8 @@
         div id="js-repeatWdays-#{task.id}"
           = render 'tasks/repeat_wday', task: task
 
-      - if task.one_time?
-        small ツイート時間 ： 
-      - if task.repeat?
-        small 次のツイート時間： 
-      strong
-        = task.tweet_datetime.strftime('%Y-%m-%d %H:%M')
+      div id="js-nextTweetDatetime-#{task.id}"
+        = render 'tasks/next_tweet_datetime', task: task
 
     div id="js-editTask-#{task.id}" class='mt-5'
       = render 'tasks/edit_form', task: task

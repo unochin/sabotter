@@ -5,6 +5,14 @@ ul.list-inline.justify-content-center id="js-taskCrudList-#{task.id}" style="flo
   - else
     li.list-inline-item id="js-taskEdit-#{task.id}" class='click-icon mr-3'
       i.js-taskEdit.fas.fa-pencil-alt.font-awesome data-task-id='#{task.id}'
-  li.list-inline-item
-    = link_to '#', class: 'js-taskDelete click-icon', data: { confirm: '削除しますか？', url: "#{user_task_path(task.user.id, task.id)}", taskid: "#{task.id}" } do
+  li.list-inline-item.mr-3
+    = link_to '#', class: 'js-taskDelete click-icon', data: { confirm: 'このタスクを削除しますか？', url: "#{user_task_path(current_user.id, task.id)}", taskid: "#{task.id}" } do
       i.fas.fa-trash-alt.font-awesome
+
+  li class="list-inline-item js-taskPause-#{task.id}"
+    - if task.active?
+        = link_to toggle_pause_user_path(task.id), class: 'js-taskPause', remote: :true, method: :put, data: { confirm: 'タスクを中断しますか？', url: "#{toggle_pause_user_path(task.id)}", taskid: "#{task.id}" } do
+          i.fas.fa-pause.font-awesome
+    - elsif task.pause?
+      = link_to toggle_pause_user_path(task.id), class: 'js-taskPause click-icon', remote: :true, method: :put, data: { confirm: 'このタスクを再開しますか？' } do
+        i.far.fa-play-circle

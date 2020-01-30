@@ -73,4 +73,11 @@ class Task < ApplicationRecord
     end
   end
 
+  def toggle_pause_flag!
+    if active?
+      pause!
+    else
+      active!
+    end
+  end
 end
