@@ -1,0 +1,19 @@
+div id="js-repeatWdays-#{task.id}" class='d-inline-block'
+  - if task.tweet_sun == 1
+    span.mr-2 日
+  - if task.tweet_mon == 1
+    span.mr-2 月
+  - if task.tweet_tue == 1
+    span.mr-2 火
+  - if task.tweet_wed == 1
+    span.mr-2 水
+  - if task.tweet_thu == 1
+    span.mr-2 木
+  - if task.tweet_fri == 1
+    span.mr-2 金
+  - if task.tweet_sat == 1
+    span.mr-2 土
+
+
+div id="js-repeatTweetTime-#{task.id}" class='ml-3 d-inline-block'
+  = task.repeat_tweet_time.strftime('%H:%M')

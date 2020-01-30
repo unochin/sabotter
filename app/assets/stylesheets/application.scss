@@ -51,6 +51,20 @@ a:link, a:visited, a:hover, a:active {
   font-size: 1.0rem;
 }
 
+#new-btn {
+  display: inline-block;
+  margin: auto;
+  border-radius: 50%;
+}
+
+#new-btn i {
+  height: 45px;
+  width: 40px;
+  font-size: 40px;
+  text-align: center;
+  line-height: 45px;
+}
+
 /* --------------------------------
  * modal
  * -------------------------------- */
@@ -73,8 +87,25 @@ color: #fff
 
 form select {
   height: 2.2rem;
+  margin-bottom: 1rem;
 }
 
-.datetime-select {
-height: 50px
+
+/* --------------------------------
+ * flash message
+ * -------------------------------- */
+.top-fixed-flash-message {
+  z-index: 10;
+  position: fixed;
+  width: 80%;
+  top: 1rem;
+  margin: auto;
 }
+
+/* --------------------------------
+ * others
+ * -------------------------------- */
+.more-info {
+  display: none;
+}
+

@@ -35,7 +35,33 @@ class TasksController < ApplicationController
     end
   end
 
-  def delete; end
+  def destroy
+    @task = current_user.tasks.find(params[:id])
+    respond_to do |format|
+      @task.destroy!
+      format.js { flash[:success] = 'タスクを削除しました' }
+    end
+  end
+
+  def pause
+    @task = current_user.tasks.find(params[:id])
+    respond_to do |format|
+      @task.toggle_pause_flag!
+      if @task.pause?
+        format.js { flash[:success] = 'タスクを休止しました！' }
+      elsif @task.active?
+        format.js { flash[:success] = 'タスクを再開しました！' }
+      end
+    end
+  end
+
+  def done
+    @task = current_user.tasks.find(params[:id])
+    respond_to do |format|
+      @task.done!
+      format.js { flash[:success] = 'タスクを完了しました！' }
+    end
+  end
 
   def task_params
     params.require(:task).permit(:title, :tweet_content, :repeat_flag, :tweet_datetime,

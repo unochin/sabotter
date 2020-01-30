@@ -1,0 +1,15 @@
+- if @task.errors.blank?
+  | $(".top-fixed-flash-message").children().remove();
+  | $(".top-fixed-flash-message").append("
+  = j(render('shared/flash_message'))
+  | ");
+  | $("#js-task-#{@task.id}").remove();
+- else
+  | $('#js-task-flash-#{@task.id}').html("
+  = j(render('shared/error_message', errors: @task.errors.full_messages))
+  | ");
+
+|  setTimeout(function() {
+|    $('.time-out').fadeOut('slow');
+|  }, 2500);
+

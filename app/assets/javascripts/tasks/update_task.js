@@ -106,9 +106,11 @@ $(function() {
         }
         $(`#js-repeatWdays-${taskId}`).html(wdaysHtml);
         $(`#js-taskEditForm-${taskId}`).fadeOut(250);
+        $(`#js-task-flash-${taskId}`).html('<div class="alert alert-success py-1 time-out">タスクを更新しました</div>');
         }
       })
       .fail( (data) => {
+        $(`#js-task-flash-${taskId}`).html('<div class="alert alert-danger py-1 time-out">タスクを更新できませんでした</div>');
       })
     });
   });

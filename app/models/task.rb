@@ -1,7 +1,5 @@
 class Task < ApplicationRecord
   belongs_to :user
-  has_one :one_time_tweet, dependent: :destroy
-  has_many :repeat_tweets, dependent: :destroy
 
   enum repeat_flag: { one_time: 0, repeat: 1 }
   enum pause_flag: { active: 0, pause: 1 }
@@ -79,4 +77,11 @@ class Task < ApplicationRecord
     end
   end
 
+  def toggle_pause_flag!
+    if active?
+      pause!
+    else
+      active!
+    end
+  end
 end
