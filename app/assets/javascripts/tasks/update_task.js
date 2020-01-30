@@ -96,6 +96,7 @@ $(function() {
         $(`#js-taskTitle-${taskId}`).text(taskEditTitle);
         $(`#js-tweetContent-${taskId}`).html(taskEditTweetContent.replace(/\r?\n/g, '<br>'));
         $(`#js-repeatTweetTime-${taskId}`).text(data['repeat_tweet_time']);
+        $(`#js-tweetTiming-${taskId} strong`).text(data['tweet_datetime']);
         let wdaysHtml = '';
         let wdays = ['日', '月', '火', '水', '木', '金', '土'];
         for (var i = 0; i < data['wdays'].length; i++) {

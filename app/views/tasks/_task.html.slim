@@ -14,7 +14,12 @@
         br
         div id="js-repeatWdays-#{task.id}"
           = render 'tasks/repeat_wday', task: task
+
       - if task.one_time?
+        small ツイート時間 ： 
+      - if task.repeat?
+        small 次のツイート時間： 
+      strong
         = task.tweet_datetime.strftime('%Y-%m-%d %H:%M')
 
     div id="js-editTask-#{task.id}" class='mt-5'
