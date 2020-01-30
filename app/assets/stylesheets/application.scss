@@ -78,3 +78,15 @@ form select {
 .datetime-select {
 height: 50px
 }
+
+
+/* --------------------------------
+ * flash message
+ * -------------------------------- */
+.top-fixed-flash-message {
+  z-index: 10;
+  position: fixed;
+  width: 80%;
+  top: 1rem;
+  margin: auto;
+}

@@ -3,7 +3,9 @@
     = current_user.name
   img src="#{current_user.icon_img_url}" style='display:inline-block; height:48px; vertical-align: middle'
 
+
 .row
+  .top-fixed-flash-message
   .offset-md-2.col-md-8
     = link_to "New Task", new_user_task_path, remote: true, class: 'btn submit-task-btn mb-3'
 

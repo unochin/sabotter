@@ -35,7 +35,16 @@ class TasksController < ApplicationController
     end
   end
 
-  def delete; end
+  def destroy
+    @task = current_user.tasks.find(params[:id])
+    respond_to do |format|
+      if @task.destroy
+        format.js { flash[:success] = 'タスクを削除しました' }
+      else
+        format.js { flash[:danger] = 'タスクを削除できませんでした' }
+      end
+    end
+  end
 
   def task_params
     params.require(:task).permit(:title, :tweet_content, :repeat_flag, :tweet_datetime,

@@ -13,5 +13,5 @@ ul.list-inline.justify-content-center id="js-taskCrudList-#{task.id}" style="flo
 
 
   li.list-inline-item.mr-3
-    = link_to '#', class: 'js-taskDelete click-icon', data: { confirm: 'このタスクを削除しますか？', url: "#{user_task_path(current_user.id, task.id)}", taskid: "#{task.id}" } do
+    = link_to user_task_path(task.id), class: 'js-taskDelete click-icon', remote: :true, method: :delete, data: { confirm: 'このタスクを削除しますか？' } do
       i.fas.fa-trash-alt.font-awesome
