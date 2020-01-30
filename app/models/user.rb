@@ -71,8 +71,6 @@ class User < ApplicationRecord
     # 暗号を復号
     access_token = dec.update(encrypted_access_token) + dec.final
     access_token_secret = secret_dec.update(encrypted_access_token_secret) + secret_dec.final
-    puts access_token
-    puts access_token_secret
 
     [access_token, access_token_secret]
   end
