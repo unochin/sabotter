@@ -43,8 +43,8 @@ class TasksController < ApplicationController
     end
   end
 
-  def toggle_pause_flag
-    @task = current_user.tasks.find(params[:task_id])
+  def pause
+    @task = current_user.tasks.find(params[:id])
     respond_to do |format|
       @task.toggle_pause_flag!
       if @task.pause?
@@ -55,8 +55,8 @@ class TasksController < ApplicationController
     end
   end
 
-  def finish
-    @task = current_user.tasks.find(params[:task_id])
+  def done
+    @task = current_user.tasks.find(params[:id])
     respond_to do |format|
       @task.done!
       format.js { flash[:success] = 'タスクを完了しました！' }
