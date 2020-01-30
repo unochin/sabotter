@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resource :user, only: %i[show] do
     resources :tasks
     put 'pause/tasks/:task_id', as: :toggle_pause, to: 'tasks#toggle_pause_flag'
+    put 'done/tasks/:task_id', as: :finish_task, to: 'tasks#finish'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

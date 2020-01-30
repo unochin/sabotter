@@ -1,7 +1,6 @@
-- if task.active?
-  - if task.one_time? 
-    small ツイート時間 ： 
-  - if task.repeat?
-    small 次のツイート時間： 
-  strong
-    = task.tweet_datetime.strftime('%Y-%m-%d %H:%M')
+- if task.one_time? 
+  small ツイート時間 ： 
+- if task.repeat?
+  small 次のツイート時間： 
+strong
+  = task.tweet_datetime.strftime('%Y-%m-%d %H:%M')
