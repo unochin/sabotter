@@ -13,12 +13,13 @@
 ActiveRecord::Schema.define(version: 2020_01_25_024414) do
 
   create_table "authentications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "provider", null: false
     t.string "uid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+    t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -45,11 +46,11 @@ ActiveRecord::Schema.define(version: 2020_01_25_024414) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "icon_img_url"
-    t.string "access_token"
-    t.string "access_token_secret"
+    t.string "enc_access_token"
+    t.string "enc_access_token_secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["access_token", "access_token_secret"], name: "index_users_on_access_token_and_access_token_secret", unique: true
+    t.index ["enc_access_token", "enc_access_token_secret"], name: "index_users_on_enc_access_token_and_enc_access_token_secret", unique: true
   end
 
   add_foreign_key "tasks", "users"
