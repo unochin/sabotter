@@ -64,6 +64,8 @@ class Task < ApplicationRecord
                    tweet_sun, tweet_mon, tweet_tue, tweet_wed, tweet_thu, tweet_fri, tweet_sat
                   ]
     tweet_time = self.repeat_tweet_time.to_s.split[1]
+    today = Time.current.to_date.to_s
+    today_tweet_datetime = (today + ' ' + tweet_time).in_time_zone
     base_day_string = base_day.to_s
     base_day_tweet_datetime = (base_day_string + ' ' + tweet_time).in_time_zone
 
