@@ -17,13 +17,13 @@ class Task < ApplicationRecord
   def at_least_one_1
     wdays = []
     wdays.push(
-              self.tweet_sun,
-              self.tweet_mon,
-              self.tweet_tue,
-              self.tweet_wed,
-              self.tweet_thu,
-              self.tweet_fri,
-              self.tweet_sat
+              tweet_sun,
+              tweet_mon,
+              tweet_tue,
+              tweet_wed,
+              tweet_thu,
+              tweet_fri,
+              tweet_sat
               )
     if wdays.all? { |wday| wday == 0 }
       errors.add(:repeat_flag, "は一つ以上の曜日を設定してください")
@@ -63,7 +63,7 @@ class Task < ApplicationRecord
     tweet_wdays = [
                    tweet_sun, tweet_mon, tweet_tue, tweet_wed, tweet_thu, tweet_fri, tweet_sat
                   ]
-    tweet_time = self.repeat_tweet_time.to_s.split[1]
+    tweet_time = repeat_tweet_time.to_s.split[1]
     today = Time.current.to_date.to_s
     today_tweet_datetime = (today + ' ' + tweet_time).in_time_zone
     base_day_string = base_day.to_s
@@ -72,7 +72,7 @@ class Task < ApplicationRecord
     if tweet_wdays[base_day.wday] == 1 && Time.current < base_day_tweet_datetime
       self.tweet_datetime = today_tweet_datetime
     else
-      next_tweet_wday = self.calc_next_tweet_wday(Time.current.wday)
+      next_tweet_wday = calc_next_tweet_wday(Time.current.wday)
       # 基準となる日からみて、次の〇曜日の日付を取得
       next_tweet_day = base_day.beginning_of_week(wdays[next_tweet_wday]).since(1.week).to_date.to_s
       self.tweet_datetime = (next_tweet_day + ' ' + tweet_time).in_time_zone
