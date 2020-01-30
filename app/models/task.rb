@@ -32,10 +32,7 @@ class Task < ApplicationRecord
 
   # 次にツイートする曜日を取得
   def calc_next_tweet_wday(base_wday)
-    tweet_wdays = [
-                  tweet_sun, tweet_mon, tweet_tue, tweet_wed, tweet_thu, tweet_fri, tweet_sat,
-                  tweet_sun, tweet_mon, tweet_tue, tweet_wed, tweet_thu, tweet_fri, tweet_sat
-                  ]
+    tweet_wdays = [tweet_sun, tweet_mon, tweet_tue, tweet_wed, tweet_thu, tweet_fri, tweet_sat]
     next_tweet_wday = -1
     tweet_wdays.each_with_index do |wday, i|
       if i <= base_wday
@@ -46,7 +43,14 @@ class Task < ApplicationRecord
         break
       end
     end
-    next_tweet_wday = next_tweet_wday % 7
+    if next_tweet_wday == -1
+      tweet_wdays.each_with_index do |wday, j|
+        if wday == 1
+          next_tweet_wday = j
+          break
+        end
+      end
+    end
     next_tweet_wday
   end
 
