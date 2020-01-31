@@ -64,7 +64,7 @@ class Task < ApplicationRecord
     tweet_time = repeat_tweet_time.to_s.split[1]
     today = Time.current.to_date.to_s
     today_tweet_datetime = (today + ' ' + tweet_time).in_time_zone
-    base_day_string = base_day.to_s
+    base_day_string = base_day.to_date.to_s
     base_day_tweet_datetime = (base_day_string + ' ' + tweet_time).in_time_zone
 
     if tweet_wdays[base_day.wday] == 1 && Time.current < base_day_tweet_datetime
@@ -82,6 +82,21 @@ class Task < ApplicationRecord
       pause!
     else
       active!
+    end
+  end
+
+  def auto_tweet!
+    access_token, access_token_secret = user.aes_decrypt
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = Rails.application.credentials.twitter[:api_key]
+      config.consumer_secret     = Rails.application.credentials.twitter[:api_secret_key]
+      config.access_token        = access_token
+      config.access_token_secret = access_token_secret
+    end
+    begin
+      client.update!(tweet_content)
+    rescue StandardError => e
+      logger.error e.backtrace.join("\n")
     end
   end
 end
