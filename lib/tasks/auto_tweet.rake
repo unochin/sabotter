@@ -5,7 +5,7 @@ namespace :auto_tweet do
     begin
       Task.active.todo.find_each do |task|
         limit_datetime = task.tweet_datetime
-        if current_datetime.ago(1.minutes) < limit_datetime < current_datetime.since(5.minutes)
+        if ( current_datetime.ago(1.minutes) < limit_datetime ) && ( limit_datetime < current_datetime.since(5.minutes) )
           task.auto_tweet!
         end
       end
