@@ -6,7 +6,7 @@ namespace :auto_tweet do
       Task.active.todo.find_each do |task|
         limit_datetime = task.tweet_datetime.strftime("%Y-%m-%d %H:%M:00")
         if current_datetime == limit_datetime
-          task.auto_tweet
+          task.auto_tweet!
         end
       end
     rescue => e

@@ -85,7 +85,7 @@ class Task < ApplicationRecord
     end
   end
 
-  def auto_tweet
+  def auto_tweet!
     access_token, access_token_secret = user.aes_decrypt
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.credentials.twitter[:api_key]
