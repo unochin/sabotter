@@ -9,7 +9,7 @@ namespace :update_tweet_datetime do
           task.save!
         end
       end
-    rescue => e
+    rescue StandardError => e
       Rails.logger.error e.backtrace.join("\n")
     end
   end

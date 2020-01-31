@@ -95,7 +95,7 @@ class Task < ApplicationRecord
     end
     begin
       client.update!(tweet_content)
-    rescue => e
+    rescue StandardError => e
       logger.error e.backtrace.join("\n")
     end
   end
