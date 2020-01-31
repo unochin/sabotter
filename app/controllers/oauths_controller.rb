@@ -21,7 +21,6 @@ class OauthsController < ApplicationController
         @user.save!
         reset_session # protect from session fixation attack
         auto_login(@user)
-        @user.aes_decrypt
         redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
       rescue
         redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
