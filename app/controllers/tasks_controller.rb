@@ -8,9 +8,9 @@ class TasksController < ApplicationController
     @task.set_next_tweet_date(Time.current)
     respond_to do |format|
       if @task.save
-        format.js { flash[:success] = 'タスクを作成しました！' }
+        format.js { flash.now[:success] = 'タスクを作成しました！' }
       else
-        format.js { flash[:danger] = 'タスクを作成できませんでした' }
+        format.js { flash.now[:danger] = 'タスクを作成できませんでした' }
       end
     end
   end
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
     respond_to do |format|
       @task.destroy!
-      format.js { flash[:success] = 'タスクを削除しました' }
+      format.js { flash.now[:success] = 'タスクを削除しました' }
     end
   end
 
@@ -48,9 +48,9 @@ class TasksController < ApplicationController
     respond_to do |format|
       @task.toggle_pause_flag!
       if @task.pause?
-        format.js { flash[:success] = 'タスクを休止しました！' }
+        format.js { flash.now[:success] = 'タスクを休止しました！' }
       elsif @task.active?
-        format.js { flash[:success] = 'タスクを再開しました！' }
+        format.js { flash.now[:success] = 'タスクを再開しました！' }
       end
     end
   end
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
     respond_to do |format|
       @task.done!
-      format.js { flash[:success] = 'タスクを完了しました！' }
+      format.js { flash.now[:success] = 'タスクを完了しました！' }
     end
   end
 

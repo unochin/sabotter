@@ -19,7 +19,7 @@ $(function() {
       taskEditTweetContentArea.val(taskTweetContent)
 
       // タスクの表示に'次の'が含まれている場合、繰り返しタスクとみなす
-      if ($(`#js-tweetTiming-${taskId} small`).text().indexOf('次の') !== -1) {
+      if ($(`#js-nextTweetDatetime-${taskId} small`).text().indexOf('次の') !== -1) {
         let wdayText = $(`#js-tweetTiming-${taskId} span`).text();
         if (wdayText.indexOf('日') !== -1) {
           $(`#js-sun-${taskId}`).prop('checked', true);

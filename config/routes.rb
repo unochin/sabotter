@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'oauth/:provider', as: :auth_at_provider, to: 'oauths#oauth'
   post 'logout', as: :logout, to: 'oauths#destroy'
 
-  resource :user, only: %i[show] do
+  resource :user, only: %i[show destroy] do
     resources :tasks do
       member do
         patch :pause

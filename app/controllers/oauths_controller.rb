@@ -13,7 +13,8 @@ class OauthsController < ApplicationController
     redirect_to root_path and return if params[:denied].present?
 
     if @user = login_from(provider)
-      redirect_to root_path(@user), :notice => "Logged in from #{provider.titleize}!"
+      flash[:success] = 'ログインしました'
+      redirect_to user_path(@user)
     else
       begin
         @user = create_from(provider)
@@ -21,16 +22,19 @@ class OauthsController < ApplicationController
         @user.save!
         reset_session # protect from session fixation attack
         auto_login(@user)
-        redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
+        flash[:success] = 'ログインしました'
+        redirect_to user_path
       rescue
-        redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
+        flash[:danger] = 'ログインに失敗しました'
+        redirect_to root_path
       end
     end
   end
 
   def destroy
     logout
-    redirect_to(:root, notice: 'Logged out!')
+    flash[:success] = 'ログアウトしました'
+    redirect_to :root
   end
   #example for Rails 4: add private method below and use "auth_params[:provider]" in place of
   #"params[:provider] above.
