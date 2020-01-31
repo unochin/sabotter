@@ -13,7 +13,7 @@ class OauthsController < ApplicationController
     redirect_to root_path and return if params[:denied].present?
 
     if @user = login_from(provider)
-      redirect_to root_path(@user), :notice => "Logged in from #{provider.titleize}!"
+      redirect_to user_path(@user), :notice => "Logged in from #{provider.titleize}!"
     else
       begin
         @user = create_from(provider)
@@ -21,7 +21,7 @@ class OauthsController < ApplicationController
         @user.save!
         reset_session # protect from session fixation attack
         auto_login(@user)
-        redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
+        redirect_to user_path, :notice => "Logged in from #{provider.titleize}!"
       rescue
         redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
       end
