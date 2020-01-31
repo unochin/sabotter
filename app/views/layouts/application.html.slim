@@ -14,7 +14,7 @@ html
         = link_to "ログアウト", :logout, method: :post, class:'mr-5'
         = link_to "アカウントを削除", user_path, method: :delete, data: { confirm: 'アカウントを削除しますか？' }
       -  else
-        = link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter)
+        = link_to 'Twitterでログイン', auth_at_provider_path(provider: :twitter)
 
     .container
       #js-flash-message style="height: 50px"
