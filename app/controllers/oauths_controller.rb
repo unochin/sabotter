@@ -17,9 +17,7 @@ class OauthsController < ApplicationController
     else
       begin
         @user = create_from(provider)
-        # TODO access_token, access_token_secretは暗号化してDBに保存する
-        @user.access_token = @access_token.token
-        @user.access_token_secret = @access_token.secret
+        @user.aes_encrypt(@access_token.token, @access_token.secret)
         @user.save!
         reset_session # protect from session fixation attack
         auto_login(@user)
