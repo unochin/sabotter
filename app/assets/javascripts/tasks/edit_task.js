@@ -47,4 +47,10 @@ $(function() {
       taskEditForm.slideUp(500);
     }
   });
+
+  $(document).on('click', '.js-taskEditCancel', function() {
+    let taskId = $(this).data('task-id');
+    let taskEditForm = $(`#js-taskEditForm-${taskId}`);
+    taskEditForm.slideUp(500);
+  });
 });
