@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'enc_access_token, enc_access_token_secretのペアがユニークでないとき' do
-      fit 'バリデーションが通らないこと' do
+      it 'バリデーションが通らないこと' do
         user = create(:user)
         another_user = create(:user)
         another_user.enc_access_token = user.enc_access_token
