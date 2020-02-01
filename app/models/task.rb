@@ -8,6 +8,7 @@ class Task < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :tweet_content, presence: true, length: { maximum: 140 }
   validates :tweet_datetime, presence: true
+  validates :repeat_tweet_time, presence: true, if: :repeat?
   validates :repeat_flag, presence: true
   validates :pause_flag, presence: true
   validates :status, presence: true
