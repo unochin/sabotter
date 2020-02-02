@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_024414) do
+ActiveRecord::Schema.define(version: 2020_02_02_162142) do
 
   create_table "authentications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2020_01_25_024414) do
     t.string "secret_salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "crypted_password"
     t.index ["enc_access_token", "enc_access_token_secret"], name: "index_users_on_enc_access_token_and_enc_access_token_secret", unique: true
   end
 

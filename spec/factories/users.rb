@@ -7,4 +7,14 @@ FactoryBot.define do
     sequence(:salt) { |n| "salt_#{n}" }
     sequence(:secret_salt) { |n| "salt_secret_#{n}" }
   end
+
+  factory :test_user, class: User do
+    name { 'test_name' }
+    email { 'another_user@example.com' }
+    password { 'password' }
+    secret_salt { 'test' }
+    enc_access_token { 'test' }
+    enc_access_token_secret { 'test' }
+  end
+
 end

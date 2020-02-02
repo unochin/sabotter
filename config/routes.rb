@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_sessions, only: %i[new create]
+
   root to: 'static_pages#home'
   get 'static_pages/mission'
 

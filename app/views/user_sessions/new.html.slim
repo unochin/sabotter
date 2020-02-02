@@ -1,0 +1,10 @@
+= render 'form'
+
+= form_with url: user_sessions_path, method: :post do |f|
+  .field
+    =f.label :email
+    = f.text_field :email
+  .field
+    = f.label :password
+    = f.password_field :password
+    = f.button :Login, class:'btn submit-task-btn'
