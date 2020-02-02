@@ -7,10 +7,19 @@ class Task < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :tweet_content, presence: true, length: { maximum: 140 }
+  validates :tweet_datetime, presence: true
+  validates :repeat_tweet_time, presence: true, if: :repeat?
   validates :repeat_flag, presence: true
   validates :pause_flag, presence: true
   validates :status, presence: true
+  validate :check_tweet_time, unless: -> { tweet_datetime == nil }
   validate :at_least_one_1, if: :repeat?
+
+  def check_tweet_time
+    if tweet_datetime <= Time.current
+      errors.add(:tweet_datetime, 'は現在時刻より未来に設定してください')
+    end
+  end
 
   def at_least_one_1
     wdays = []
