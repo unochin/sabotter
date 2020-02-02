@@ -16,7 +16,7 @@
 
         .form-group#js-tweetDateTime
           = f.label :tweet_datetime, class: 'col-form-label d-block'
-          = f.datetime_select :tweet_datetime, {start_year: Time.current.year, default: Time.current}
+          = f.datetime_select :tweet_datetime, { start_year: Time.current.year, end_year: Time.current.year.next, default: Time.current, minute_step: 30, date_separator: '/', use_month_numbers: true }
 
         .form_group#js-wday style='display:none'
           = f.check_box :tweet_sun, class: 'mr-1'
@@ -36,7 +36,7 @@
 
         .form-group#js-tweetTime style='display:none'
           = f.label :repeat_tweet_time
-          = f.time_select :repeat_tweet_time
+          = f.time_select :repeat_tweet_time, { minute_step: 30 }
         .form-group
           = f.label :tweet_content
           = f.text_area :tweet_content, cols: '50', rows: '3', class: 'form-control', placeholder: '140字以内'

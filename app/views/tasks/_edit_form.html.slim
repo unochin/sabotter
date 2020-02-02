@@ -4,12 +4,12 @@
   - if task.one_time?
     .group-form.datetime-select
       = f.label 'tweet_datetime', class: 'mr-2 d-block'
-      = f.datetime_select id="js-editTweetDateTime-#{task.id}", {start_year: Time.current.year, default: task.tweet_datetime}
+      = f.datetime_select id="js-editTweetDateTime-#{task.id}", { start_year: Time.current.year, end_year: Time.current.year.next, default: task.tweet_datetime, minute_step: 30, date_separator: '/', use_month_numbers: true }
 
   - if task.repeat?
     .group-form.datetime-select
       = f.label 'tweet_time', class: 'mr-2'
-      = f.time_select id="js-editTweetTime-#{task.id}", { default: task.repeat_tweet_time }
+      = f.time_select id="js-editTweetTime-#{task.id}", { default: task.repeat_tweet_time, minute_step: 30 }
     .form_group
       input type='checkbox' id="js-sun-#{task.id}" class='mr-1' name="editTweetWday-#{task.id}" value='sun'
       label for="js-sun-#{task.id}" Sun
