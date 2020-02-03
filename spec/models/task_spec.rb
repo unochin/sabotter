@@ -5,8 +5,27 @@ RSpec.describe Task, type: :model do
   let(:repeat_task) { build(:repeat_task) }
 
   context '全ての属性値が正常なとき' do
-    it 'バリデーションが通ること' do
-      expect(one_time_task).to be_valid
+    context 'ど正常'
+      it 'バリデーションが通ること' do
+        expect(one_time_task).to be_valid
+      end
+    context 'repeat_taskで一つの曜日が1のとき' do
+      it 'バリデーションが通ること' do
+        repeat_task.tweet_sun = 0
+        repeat_task.tweet_mon = 0
+        repeat_task.tweet_tue = 0
+        repeat_task.tweet_wed = 1
+        repeat_task.tweet_thu = 0
+        repeat_task.tweet_fri = 0
+        repeat_task.tweet_sat = 0
+        expect(repeat_task).to be_valid
+      end
+    end
+    context 'tweet_datetimeが現在時刻より少しでも未来のとき' do
+      it 'バリデーションが通ること' do
+        one_time_task.tweet_datetime = Time.current.since(1.minute)
+        expect(one_time_task).to be_valid
+      end
     end
   end
 
@@ -69,7 +88,6 @@ RSpec.describe Task, type: :model do
         repeat_task.tweet_thu = 0
         repeat_task.tweet_fri = 0
         repeat_task.tweet_sat = 0
-        # expect(repeat_task).to be_valid
         repeat_task.valid?
         expect(repeat_task.errors[:repeat_flag]).to include('は一つ以上の曜日を設定してください')
       end
