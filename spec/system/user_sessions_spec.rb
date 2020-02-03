@@ -7,18 +7,27 @@ RSpec.describe 'UserSessions', type: :system do
 
   describe 'ログイン後' do
     before do
-      visit new_user_session_path
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: 'password'
-      click_button 'Login'
-      sleep 0.5
-      visit user_path
-      sleep 0.5
+      #    login user
+      # visit new_user_session_path
+      # fill_in 'Email', with: user.email
+      # fill_in 'Password', with: 'password'
+      # click_button 'Login'
+      # sleep 0.5
+      # visit user_path
+      # sleep 0.5
+      allow_any_instance_of(UsersController)
+        .to receive(:current_user)
+        .and_return(user)
+      allow_any_instance_of(TasksController)
+        .to receive(:current_user)
+        .and_return(user)
     end
 
     context 'フォームの入力値が正常' do
       context '繰り返しなしのタスクを登録' do
         fit 'タスクが登録されタスク一覧に追加される', js: true do
+          visit user_path
+          save_and_open_page
           click_link nil, href: new_user_task_path
           sleep 0.5
           fill_in 'Title', with: '朝走る'
@@ -38,7 +47,7 @@ RSpec.describe 'UserSessions', type: :system do
       end
 
       context '繰り返しありのタスクを登録' do
-        fit 'タスクが登録されタスク一覧に追加される', js: true do
+        it 'タスクが登録されタスク一覧に追加される', js: true do
           click_link nil, href: new_user_task_path
           sleep 0.5
           check 'repeat'
