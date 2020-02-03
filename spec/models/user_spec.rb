@@ -13,31 +13,36 @@ RSpec.describe User, type: :model do
     context 'nameがnullのとき' do
       it 'バリデーションが通らないこと' do
         user.name = nil
-        expect(user).to be_invalid
+        user.valid?
+        expect(user.errors[:name]).to include('を入力してください')
       end
     end
     context 'saltがnullのとき' do
       it 'バリデーションが通らないこと' do
         user.salt = nil
-        expect(user).to be_invalid
+        user.valid?
+        expect(user.errors[:salt]).to include('を入力してください')
       end
     end
     context 'secret_saltがnullのとき' do
       it 'バリデーションが通らないこと' do
         user.secret_salt = nil
-        expect(user).to be_invalid
+        user.valid?
+        expect(user.errors[:secret_salt]).to include('を入力してください')
       end
     end
     context 'enc_access_tokenがnullのとき' do
       it 'バリデーションが通らないこと' do
         user.enc_access_token = nil
-        expect(user).to be_invalid
+        user.valid?
+        expect(user.errors[:enc_access_token]).to include('を入力してください')
       end
     end
     context 'enc_access_token_secretがnullのとき' do
       it 'バリデーションが通らないこと' do
         user.enc_access_token_secret = nil
-        expect(user).to be_invalid
+        user.valid?
+        expect(user.errors[:enc_access_token_secret]).to include('を入力してください')
       end
     end
 
@@ -47,7 +52,8 @@ RSpec.describe User, type: :model do
         another_user = create(:user)
         another_user.enc_access_token = user.enc_access_token
         another_user.enc_access_token_secret = user.enc_access_token_secret
-        expect(another_user).to be_invalid
+        another_user.valid?
+        expect(another_user.errors[:enc_access_token]).to include('はすでに存在します')
       end
     end
   end
