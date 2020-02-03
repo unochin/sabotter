@@ -14,43 +14,50 @@ RSpec.describe Task, type: :model do
     context 'titleがnullのとき' do
       it 'バリデーションが通らないこと' do
         one_time_task.title = nil
-        expect(one_time_task).to be_invalid
+        one_time_task.valid?
+        expect(one_time_task.errors[:title]).to include('を入力してください')
       end
     end
     context 'tweet_contentがnullのとき' do
       it 'バリデーションが通らないこと' do
         one_time_task.tweet_content = nil
-        expect(one_time_task).to be_invalid
+        one_time_task.valid?
+        expect(one_time_task.errors[:tweet_content]).to include('を入力してください')
       end
     end
     context 'tweet_datetimeがnullのとき' do
       it 'バリデーションが通らないこと' do
         one_time_task.tweet_datetime = nil
-        expect(one_time_task).to be_invalid
+        one_time_task.valid?
+        expect(one_time_task.errors[:tweet_datetime]).to include('を入力してください')
       end
     end
     context 'repeat_flagがnullのとき' do
       it 'バリデーションが通らないこと' do
         one_time_task.repeat_flag = nil
-        expect(one_time_task).to be_invalid
+        one_time_task.valid?
+        expect(one_time_task.errors[:repeat_flag]).to include('を入力してください')
       end
     end
     context 'pause_flagがnullのとき' do
       it 'バリデーションが通らないこと' do
         one_time_task.pause_flag = nil
-        expect(one_time_task).to be_invalid
+        one_time_task.valid?
+        expect(one_time_task.errors[:pause_flag]).to include('を入力してください')
       end
     end
     context 'statusがnullのとき' do
       it 'バリデーションが通らないこと' do
         one_time_task.status = nil
-        expect(one_time_task).to be_invalid
+        one_time_task.valid?
+        expect(one_time_task.errors[:status]).to include('を入力してください')
       end
     end
     context 'repeat_taskでtweet_timeがnullのとき' do
       it 'バリデーションが通らないこと' do
         repeat_task.status = nil
-        expect(repeat_task).to be_invalid
+        repeat_task.valid?
+        expect(repeat_task.errors[:status]).to include('を入力してください')
       end
     end
     context 'repeat_taskで繰り返しの曜日が全て0のとき' do
@@ -62,19 +69,23 @@ RSpec.describe Task, type: :model do
         repeat_task.tweet_thu = 0
         repeat_task.tweet_fri = 0
         repeat_task.tweet_sat = 0
-        expect(repeat_task).to be_invalid
+        # expect(repeat_task).to be_valid
+        repeat_task.valid?
+        expect(repeat_task.errors[:repeat_flag]).to include('は一つ以上の曜日を設定してください')
       end
     end
     context 'tweet_datetimeが現在と同時刻のとき' do
       it 'バリデーションが通らないこと' do
         one_time_task.tweet_datetime = Time.current
-        expect(one_time_task).to be_invalid
+        one_time_task.valid?
+        expect(one_time_task.errors[:tweet_datetime]).to include('は現在時刻より未来に設定してください')
       end
     end
     context 'tweet_datetimeが現在時刻より前のとき' do
       it 'バリデーションが通らないこと' do
         one_time_task.tweet_datetime = Time.current.ago(1.minute)
-        expect(one_time_task).to be_invalid
+        one_time_task.valid?
+        expect(one_time_task.errors[:tweet_datetime]).to include('は現在時刻より未来に設定してください')
       end
     end
   end
