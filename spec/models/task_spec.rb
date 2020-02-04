@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  let(:one_time_task) { build(:one_time_task) }
-  let(:repeat_task) { build(:repeat_task) }
+  let(:one_time_task) { build(:task, :one_time_task) }
+  let(:repeat_task) { build(:task, :repeat_task) }
 
   context '全ての属性値が正常なとき' do
     context 'ど正常'
