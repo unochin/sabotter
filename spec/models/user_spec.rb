@@ -48,12 +48,12 @@ RSpec.describe User, type: :model do
 
     context 'enc_access_token, enc_access_token_secretのペアがユニークでないとき' do
       it 'バリデーションが通らないこと' do
-        user = create(:user)
         another_user = create(:user)
         another_user.enc_access_token = user.enc_access_token
         another_user.enc_access_token_secret = user.enc_access_token_secret
-        another_user.valid?
-        expect(another_user.errors[:enc_access_token]).to include('はすでに存在します')
+        another_user.save
+        user.valid?
+        expect(user.errors[:enc_access_token]).to include('はすでに存在します')
       end
     end
   end
