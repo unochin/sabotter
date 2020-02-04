@@ -6,6 +6,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :authentications
 
   validates :name, presence: true
+  validates :salt, presence: true
+  validates :secret_salt, presence: true
   validates :enc_access_token, presence: true
   validates :enc_access_token_secret, presence: true
   validates :enc_access_token, uniqueness: { scope: :enc_access_token_secret }
