@@ -92,25 +92,25 @@ $(function() {
       }
     })
       .done( (data) => {
-        if (taskEditTweetContent !== '') {
         $(`#js-taskTitle-${taskId}`).text(taskEditTitle);
         $(`#js-tweetContent-${taskId}`).html(taskEditTweetContent.replace(/\r?\n/g, '<br>'));
-        $(`#js-repeatTweetTime-${taskId}`).text(data['repeat_tweet_time']);
         $(`#js-nextTweetDatetime-${taskId} strong`).text(data['tweet_datetime']);
-        let wdaysHtml = '';
-        let wdays = ['日', '月', '火', '水', '木', '金', '土'];
-        for (var i = 0; i < data['wdays'].length; i++) {
-          if (data['wdays'][i] == 1) {
-          wdaysHtml += `<span class='mr-2'>${wdays[i]}</span>`;
+        if (data['repeat']) {
+          let wdays = ['日', '月', '火', '水', '木', '金', '土'];
+          $(`#js-repeatTweetTime-${taskId}`).text(data['repeat_tweet_time']);
+          let wdaysHtml = '';
+          for (var i = 0; i < data['wdays'].length; i++) {
+            if (data['wdays'][i] == 1) {
+            wdaysHtml += `<span class='mr-2'>${wdays[i]}</span>`;
+            }
           }
+          $(`#js-repeatWdays-${taskId}`).html(wdaysHtml);
         }
-        $(`#js-repeatWdays-${taskId}`).html(wdaysHtml);
         $(`#js-taskEditForm-${taskId}`).fadeOut(250);
         $(`#js-task-flash-${taskId}`).html('<div class="alert alert-success py-1 time-out">タスクを更新しました</div>');
-        }
       })
       .fail( (data) => {
-        $(`#js-task-flash-${taskId}`).html('<div class="alert alert-danger py-1 time-out">タスクを更新できませんでした</div>');
+        $(`#js-task-flash-${taskId}`).html(`<div class="alert alert-danger py-1 time-out">${data['responseJSON']['errors']['messages']}</div>`);
       })
     });
   });

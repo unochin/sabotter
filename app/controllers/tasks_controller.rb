@@ -23,14 +23,24 @@ class TasksController < ApplicationController
     @task.assign_attributes(task_update_params)
     @task.set_next_tweet_date(Time.current)
     if @task.save
-      render json: {
-                    tweet_datetime: @task.tweet_datetime.strftime('%Y-%m-%d %H:%M'),
-                    repeat_tweet_time: @task.repeat_tweet_time.strftime('%H:%M'),
-                    wdays: [@task.tweet_sun, @task.tweet_mon, @task.tweet_tue, @task.tweet_wed,
-                            @task.tweet_thu, @task.tweet_fri, @task.tweet_sat]
-                    },
-                    status: :ok
+      if @task.one_time?
+        render json: {repeat: false , tweet_datetime: @task.tweet_datetime.strftime('%Y-%m-%d %H:%M')}, status: :ok
+      elsif @task.repeat?
+        render json: {
+                      repeat: true,
+                      tweet_datetime: @task.tweet_datetime.strftime('%Y-%m-%d %H:%M'),
+                      repeat_tweet_time: @task.repeat_tweet_time.strftime('%H:%M'),
+                      wdays: [@task.tweet_sun, @task.tweet_mon, @task.tweet_tue, @task.tweet_wed,
+                              @task.tweet_thu, @task.tweet_fri, @task.tweet_sat]
+                      },
+                      status: :ok
+      end
     else
+      puts '--------t'
+      puts @task.errors.full_messages
+      puts @task.id
+      puts @task.present?
+      puts '----t----t'
       render json: { task: @task, errors: { messages: @task.errors.full_messages } }, status: :bad_request
     end
   end
