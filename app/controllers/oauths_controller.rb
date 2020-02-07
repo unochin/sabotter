@@ -14,7 +14,7 @@ class OauthsController < ApplicationController
 
     if @user = login_from(provider)
       flash[:success] = 'ログインしました'
-      redirect_to user_path(@user)
+      redirect_to user_path
     else
       begin
         @user = create_from(provider)
