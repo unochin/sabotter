@@ -10,9 +10,7 @@ html
     = javascript_include_tag 'application'
   body
     #nav
-      - if current_user
-        = link_to "ログアウト", :logout, method: :post, class:'mr-5'
-      -  else
+      - unless current_user
         = link_to 'Twitterでログイン', auth_at_provider_path(provider: :twitter), class:'btn submit-task-btn'
 
     .container
@@ -22,6 +20,8 @@ html
       = yield
 
       footer.mt-5.text-center
-        = link_to "ログアウト", :logout, method: :post, class:'mr-5 small'
-        = link_to "アカウントを削除", user_path, method: :delete, class:'small', data: { confirm: 'アカウントを削除しますか？' }
+        = link_to "TOP", :root, class:'mr-5 small'
+        - if current_user
+          = link_to "ログアウト", :logout, method: :post, class:'mr-5 small'
+          = link_to "アカウントを削除", user_path, method: :delete, class:'small', data: { confirm: 'アカウントを削除しますか？' }
 
