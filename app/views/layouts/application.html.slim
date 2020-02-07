@@ -9,6 +9,7 @@ html
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   body
+    h1 サボッター
     #nav
       - unless current_user
         = link_to 'Twitterでログイン', auth_at_provider_path(provider: :twitter), class:'btn submit-task-btn'
