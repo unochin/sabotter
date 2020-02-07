@@ -36,8 +36,10 @@ a:link, a:visited, a:hover, a:active {
   color: #fff;
 }
 
-footer a:link, a:visited, a:hover, a:active {
-  color: #C0C0C0;
+footer {
+  a:link, a:visited, a:hover, a:active {
+    color: #C0C0C0;
+  }
 }
 
 h1 {
