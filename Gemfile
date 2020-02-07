@@ -44,6 +44,9 @@ gem 'slim-rails'
 gem 'sorcery'
 gem 'twitter'
 
+# Configuration
+gem 'config'
+
 # Background Job
 gem 'whenever', require: false
 
