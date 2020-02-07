@@ -12,12 +12,16 @@ html
     #nav
       - if current_user
         = link_to "ログアウト", :logout, method: :post, class:'mr-5'
-        = link_to "アカウントを削除", user_path, method: :delete, data: { confirm: 'アカウントを削除しますか？' }
       -  else
-        = link_to 'Twitterでログイン', auth_at_provider_path(provider: :twitter)
+        = link_to 'Twitterでログイン', auth_at_provider_path(provider: :twitter), class:'btn submit-task-btn'
 
     .container
       #js-flash-message style="height: 50px"
         = render 'shared/flash_message'
 
       = yield
+
+      footer.mt-5.text-center
+        = link_to "ログアウト", :logout, method: :post, class:'mr-5 small'
+        = link_to "アカウントを削除", user_path, method: :delete, class:'small', data: { confirm: 'アカウントを削除しますか？' }
+
