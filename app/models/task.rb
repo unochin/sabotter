@@ -15,6 +15,8 @@ class Task < ApplicationRecord
   validate :check_tweet_time
   validate :at_least_one_1, if: :repeat?
 
+  scope :have_to_tweet, -> { todo.active.where(tweet_datetime: Time.current.ago(1.minute)..Time.current.since(5.minutes)) }
+
   def check_tweet_time
     if tweet_datetime&.past?
       errors.add(:tweet_datetime, 'は現在時刻より未来に設定してください')
