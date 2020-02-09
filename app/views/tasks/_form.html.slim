@@ -1,46 +1,53 @@
 .modal-dialog.modal-dialog-centered role="document"
   .modal-content
     .modal-header
-      h5 class="modal-title"  New Task
+      h5 class="modal-title"  = Task.model_name.human
       button type="button" class="close" data-dismiss="modal" aria-label="Close"
         span aria-hidden="true" &times;
     .modal-body
       = form_with model: [current_user, task], remote: true do |f|
         #js-errorMessage
         .form-group
-          = f.label :title, class: 'col-form-label'
+          = f.label :title, class: 'col-form-label label'
           = f.text_field :title, class: 'form-control'
-        .form-group#js-repeatFlag
-          = f.check_box :repeat_flag, { class: 'mr-1' }, 'repeat', 'one_time'
-          = f.label :repeat_flag, 'repeat'
+        .form-group#js-repeatFlag.mb-1
+          = f.check_box :repeat_flag, { class: 'mr-2' }, 'repeat', 'one_time'
+          = f.label :repeat_flag, class: 'label'
 
-        .form-group#js-tweetDateTime
-          = f.label :tweet_datetime, class: 'col-form-label d-block'
+        .form-group#js-tweetDateTime.mb-2
+          = f.label :tweet_datetime, class: 'col-form-label d-block label'
           = f.datetime_select :tweet_datetime, { start_year: Time.current.year, end_year: Time.current.year.next, default: Time.current, minute_step: 30, date_separator: '/', use_month_numbers: true }
 
-        .form_group#js-wday style='display:none'
-          = f.check_box :tweet_sun, class: 'mr-1'
-          = f.label :tweet_sun, '日'
-          = f.check_box :tweet_mon, class: 'ml-4 mr-1'
-          = f.label :tweet_mon, '月'
-          = f.check_box :tweet_tue, class: 'ml-4 mr-1'
-          = f.label :tweet_tue, '火'
-          = f.check_box :tweet_wed, class: 'ml-4 mr-1'
-          = f.label :tweet_wed, '水'
-          = f.check_box :tweet_thu, class: 'ml-4 mr-1'
-          = f.label :tweet_thu, '木'
-          = f.check_box :tweet_fri, class: 'ml-4 mr-1'
-          = f.label :tweet_fri, '金'
-          = f.check_box :tweet_sat, class: 'ml-4 mr-1'
-          = f.label :tweet_sat, '土'
+        .form_group#js-wday.mb-2 style='display:none'
+          .d-inline-block
+            = f.check_box :tweet_sun, class: 'mr-1'
+            = f.label :tweet_sun, t('.sun')
+          .d-inline-block
+            = f.check_box :tweet_mon, class: 'ml-4 mr-1'
+            = f.label :tweet_mon, t('.mon')
+          .d-inline-block
+            = f.check_box :tweet_tue, class: 'ml-4 mr-1'
+            = f.label :tweet_tue, t('.tue')
+          .d-inline-block
+            = f.check_box :tweet_wed, class: 'ml-4 mr-1'
+            = f.label :tweet_wed, t('.wed')
+          .d-inline-block
+            = f.check_box :tweet_thu, class: 'ml-4 mr-1'
+            = f.label :tweet_thu, t('.thu')
+          .d-inline-block
+            = f.check_box :tweet_fri, class: 'ml-4 mr-1'
+            = f.label :tweet_fri, t('.fri')
+          .d-inline-block
+            = f.check_box :tweet_sat, class: 'ml-4 mr-1'
+            = f.label :tweet_sat, t('.sat')
 
         .form-group#js-tweetTime style='display:none'
-          = f.label :repeat_tweet_time
-          = f.time_select :repeat_tweet_time, { minute_step: 30 }
+          = f.time_select :repeat_tweet_time, { minute_step: 30 }, class: 'mr-2'
+          = f.label :repeat_tweet_time, class: 'label'
         .form-group
-          = f.label :tweet_content
+          = f.label :tweet_content, class: 'label'
           = f.text_area :tweet_content, cols: '50', rows: '3', class: 'form-control', placeholder: '140字以内'
 
         .modal-footer
-          button type="button" class="btn btn-secondary" data-dismiss="modal" Close
-          = f.button :Save, class:'btn submit-task-btn'
+          button type="button" class="btn btn-secondary" data-dismiss="modal" = t('.cancel')
+          = f.button t('.submit'), class:'btn submit-task-btn'
