@@ -2,7 +2,7 @@ namespace :auto_tweet do
   desc '期限が過ぎた未完了のタスクのサボったツイート'
   task auto_tweet: :environment do
     begin
-      Task.have_to_tweet.find_each do |task|
+      Task.have_to_tweet.each do |task|
         task.auto_tweet!
       end
     rescue => e
