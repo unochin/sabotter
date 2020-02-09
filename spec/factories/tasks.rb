@@ -33,6 +33,7 @@ FactoryBot.define do
       repeat_flag { :one_time }
     end
     trait :repeat do
+      repeat_flag { :repeat }
       repeat_tweet_time { "#{Time.current.hour}:00:00".in_time_zone }
       tweet_sun { 1 }
       tweet_mon { 0 }
@@ -59,10 +60,10 @@ FactoryBot.define do
       tweet_datetime { Time.current }
     end
     trait :three_minutes_after_tweet_datetime do
-      tweet_datetime { Time.current.since(3.minutes) }
+      tweet_datetime { Time.current.ago(3.minutes) }
     end
     trait :three_minutes_before_tweet_datetime do
-      tweet_datetime { Time.current.ago(3.minutes) }
+      tweet_datetime { Time.current.since(3.minutes) }
     end
     trait :skip_validate do
       to_create {|instance| instance.save(validate: false)}
