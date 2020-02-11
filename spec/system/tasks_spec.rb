@@ -31,7 +31,7 @@ RSpec.describe 'Tasks', type: :system do
       end
 
       context 'タスクを編集(タイトル, ツイート内容)' do
-        xit '編集した内容が反映される', js: true do
+        it '編集した内容が反映される', js: true do
           one_time_task
           updated_title = 'updated title'
           updated_tweet_content = 'updated tweet content'
@@ -118,10 +118,12 @@ RSpec.describe 'Tasks', type: :system do
           expect(all(:css, '.repeat-time')[0].has_text?(updated_tweet_time.strftime('%H:%M'))).to be true
         end
       end
+      # TODO
       context 'タスクを編集(繰り返しの曜日)' do
         xit '編集した曜日、次回のツイート時間に反映される' do
         end
       end
+      # TODO
       context 'タスクを編集(ツイート時間, 繰り返しの曜日)' do
         xit 'ツイート時間, 曜日、次回のツイート時間に反映される' do
         end
