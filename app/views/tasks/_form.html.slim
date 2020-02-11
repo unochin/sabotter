@@ -16,7 +16,8 @@
 
         .form-group#js-tweetDateTime.mb-2
           = f.label :tweet_datetime, class: 'col-form-label d-block label'
-          = f.datetime_select :tweet_datetime, { start_year: Time.current.year, end_year: Time.current.year.next, default: Time.current, minute_step: 30, date_separator: '/', use_month_numbers: true }
+          = f.datetime_select :tweet_datetime, { start_year: Time.current.year, end_year: Time.current.year.next,\
+                                                default: Time.current, minute_step: 30, date_separator: '/ ', datetime_separator: '- ', use_month_numbers: true }
 
         .form_group#js-wday.mb-2 style='display:none'
           .d-inline-block

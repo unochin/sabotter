@@ -4,7 +4,8 @@
   - if task.one_time?
     .group-form.datetime-select
       = f.label Task.human_attribute_name(:tweet_datetime), class: 'mr-2 d-block label'
-      = f.datetime_select id="js-editTweetDateTime-#{task.id}", { start_year: Time.current.year, end_year: Time.current.year.next, default: task.tweet_datetime, minute_step: 30, date_separator: '/', use_month_numbers: true }
+      = f.datetime_select id="js-editTweetDateTime-#{task.id}", { start_year: Time.current.year, end_year: Time.current.year.next,\
+                                                                  default: task.tweet_datetime, minute_step: 30, date_separator: '/ ', datetime_separator: '- ', use_month_numbers: true }
 
   - if task.repeat?
     .group-form.datetime-select
