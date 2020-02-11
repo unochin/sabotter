@@ -8,12 +8,12 @@ FactoryBot.define do
 
     trait :one_time_task do
       repeat_flag { :one_time }
-      tweet_datetime { Time.current.since(3.days) }
+      tweet_datetime { "#{Time.current.year}-#{Time.current.month}-#{Time.current.day + 1} #{Time.current.hour}:30:00".in_time_zone }
     end
     trait :repeat_task do
       repeat_flag { :repeat }
-      repeat_tweet_time { Time.current }
-      tweet_datetime { set_next_tweet_date(Time.current) }
+      repeat_tweet_time { "#{Time.current.hour}:30:00".in_time_zone }
+      tweet_datetime { set_next_tweet_date("#{Time.current.year}-#{Time.current.month}-#{Time.current.day + 1} #{Time.current.hour}:30:00".in_time_zone) }
       tweet_sun { 1 }
       tweet_mon { 0 }
       tweet_tue { 1 }
