@@ -110,7 +110,7 @@ Rails.application.config.sorcery.configure do |config|
   config.twitter.key = Rails.application.credentials.twitter[:api_key]
   config.twitter.secret = Rails.application.credentials.twitter[:api_secret_key]
   # TODO 環境ごとにcallback_urlを変える
-  config.twitter.callback_url = "http://127.0.0.1:3000/oauth/callback"
+  config.twitter.callback_url = Settings.twitter.callback_url
   config.twitter.user_info_mapping = {
     name: 'name',
     icon_img_url: 'profile_image_url_https'

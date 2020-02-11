@@ -36,6 +36,17 @@ a:link, a:visited, a:hover, a:active {
   color: #fff;
 }
 
+footer {
+  a:link, a:visited, a:hover, a:active {
+    color: #C0C0C0;
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 /* --------------------------------
  * button
  * -------------------------------- */
@@ -86,10 +97,14 @@ color: #fff
 }
 
 form select {
-  height: 2.2rem;
+  height: 2.0rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 
+.label {
+  font-size: 0.95rem
+}
 
 /* --------------------------------
  * flash message
@@ -113,3 +128,6 @@ form select {
   display: none;
 }
 
+.top-text p {
+  margin-bottom: 3rem;
+}

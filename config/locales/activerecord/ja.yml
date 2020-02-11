@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      task: タスク
+    attributes:
+      task:
+        id: ID
+        title: やること
+        tweet_content: サボった時のツイート内容
+        repeat_flag: 繰り返し
+        tweet_datetime: 期限（サボった時のツイート時間）
+        repeat_tweet_time: 期限（サボった時のツイート時間）
+
