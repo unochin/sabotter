@@ -2,5 +2,5 @@
   small.mr-4 = t('.tweet_datetime')
 - if task.repeat?
   small.mr-4 = t('.next_tweet_datetime')
-strong
+strong.repeat-time
   = task.tweet_datetime.strftime('%Y-%m-%d %H:%M')

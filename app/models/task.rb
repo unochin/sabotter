@@ -15,6 +15,8 @@ class Task < ApplicationRecord
   validate :check_tweet_time
   validate :at_least_one_1, if: :repeat?
 
+  scope :have_to_tweet, -> { todo.active.where(tweet_datetime: Time.current.ago(1.minute)..Time.current.since(5.minutes)) }
+
   def check_tweet_time
     if tweet_datetime&.past?
       errors.add(:tweet_datetime, 'は現在時刻より未来に設定してください')
@@ -94,16 +96,19 @@ class Task < ApplicationRecord
     end
   end
 
-  def auto_tweet!
+  def twitter_client
     access_token, access_token_secret = user.aes_decrypt
-    client = Twitter::REST::Client.new do |config|
+    @twitter_client ||= Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.credentials.twitter[:api_key]
       config.consumer_secret     = Rails.application.credentials.twitter[:api_secret_key]
       config.access_token        = access_token
       config.access_token_secret = access_token_secret
     end
+  end
+
+  def auto_tweet!
     begin
-      client.update!(tweet_content)
+      twitter_client.update!(tweet_content)
     rescue StandardError => e
       logger.error e.backtrace.join("\n")
     end

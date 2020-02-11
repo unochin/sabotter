@@ -3,7 +3,7 @@ namespace :update_tweet_datetime do
   task update_tweet_datetime: :environment do
     current_datetime = Time.current
     begin
-      Task.repeat.find_each do |task|
+      Task.repeat.each do |task|
         if task.tweet_datetime < current_datetime
           task.set_next_tweet_date(current_datetime)
           task.todo!
