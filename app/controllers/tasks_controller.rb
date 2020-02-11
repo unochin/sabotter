@@ -36,11 +36,6 @@ class TasksController < ApplicationController
                       status: :ok
       end
     else
-      puts '--------t'
-      puts @task.errors.full_messages
-      puts @task.id
-      puts @task.present?
-      puts '----t----t'
       render json: { task: @task, errors: { messages: @task.errors.full_messages } }, status: :bad_request
     end
   end
