@@ -53,3 +53,4 @@ production:
   username: <%= ENV['SABOTTER_DATABASE_USERNAME'] %>
   password: <%= ENV['SABOTTER_DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
+  host: <%= ENV['SABOTTER_DATABASE_HOST'] %>
