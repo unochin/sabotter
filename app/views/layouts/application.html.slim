@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+    title
+      | Sabotter
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'reset', media: 'all'
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  body
+    h1 = t('.sabotter')
+    #nav
+      - unless current_user
+        = link_to t('.twitter_login'), auth_at_provider_path(provider: :twitter), class:'btn submit-task-btn'
+
+    .container
+      #js-flash-message style="height: 50px"
+        = render 'shared/flash_message'
+
+      = yield
+
+      footer.mt-5.text-center
+        = link_to t('.top'), :root, class:'mr-5 small'
+        - if current_user
+          = link_to t('.logout'), :logout, method: :post, class:'mr-5 small'
+          = link_to t('.delete_account'), user_path, method: :delete, class:'small', data: { confirm: t('.confirm_delete_account') }
+

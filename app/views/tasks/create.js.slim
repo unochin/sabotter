@@ -1,0 +1,18 @@
+- if @task.errors.blank?
+  | $("#js-newTaskModal").modal("hide");
+  | $("#js-newTaskModal").children().remove();
+  | $("#js-taskList").append("
+  = j(render('task', task: @task))
+  | ");
+  | $("#js-flash-message").children().remove();
+  | $("#js-flash-message").append("
+  = j(render('shared/flash_message'))
+  | ");
+- else
+  | $('#js-errorMessage').html("
+  = j(render('shared/error_message', errors: @task.errors.full_messages))
+  | ");
+
+|  setTimeout(function() {
+|    $('.time-out').fadeOut('slow');
+|  }, 2500);

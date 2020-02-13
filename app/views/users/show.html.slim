@@ -1,0 +1,23 @@
+.user-profile
+  img id='icon-img' class='mr-2' src="#{current_user.icon_img_url}" style='display:inline-block; height:48px; vertical-align: middle'
+  p style='display:inline-block'
+    = current_user.name
+
+.row
+  .top-fixed-flash-message
+  .offset-md-2.col-md-8.text-center
+    div
+    = link_to new_user_task_path, remote: true, id: 'new-btn', class: 'btn submit-task-btn mb-3' do
+      i.fas.fa-plus
+
+  <!-- タスク新規作成モーダル -->
+    #js-newTaskModal.modal.fade tabindex="-1" role="dialog" aria-hidden="true"
+
+  <!-- タスク一覧 -->
+    #js-taskList.offset-md-2.col-md-8
+      = render @tasks
+
+      = javascript_include_tag 'tasks/general.js'
+      = javascript_include_tag 'tasks/form.js'
+      = javascript_include_tag 'tasks/edit_task.js'
+      = javascript_include_tag 'tasks/update_task.js'

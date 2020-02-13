@@ -1,0 +1,14 @@
+div id="js-moreInfo-#{task.id}" class='more-info'
+  i.fas.fa-angle-up.js-hideMoreInfo style='font-size:28px' data-task-id='#{task.id}'
+  p.mb-0.label = Task.human_attribute_name(:tweet_content)
+  div id="js-tweetContent-#{task.id}"
+    = task.tweet_content
+
+  .icon-menus.my-3
+    div id="js-taskCrudMenus-#{task.id}"  class='d-inline-block'
+      = render 'tasks/crud_menus', { user: task.user, task: task }
+
+  div id="js-editTask-#{task.id}" class='mt-5'
+    = render 'tasks/edit_form', task: task
+
+i.fas.fa-angle-down.js-showMoreInfo style='font-size:28px' data-task-id='#{task.id}' id="js-hideIcon-#{task.id}"

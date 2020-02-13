@@ -1,0 +1,48 @@
+ja:
+  layouts:
+    application:
+      sabotter: 'サボッター'
+      top: 'トップ画面'
+      logout: 'ログアウト'
+      delete_account: '退会'
+      confirm_delete_account: 'アカウントを削除しますか？(登録したタスクも削除されます)'
+  tasks:
+    form:
+      sun: '日'
+      mon: '月'
+      tue: '火'
+      wed: '水'
+      thu: '木'
+      fri: '金'
+      sat: '土'
+      submit: '登録'
+      cancel: 'キャンセル'
+    edit_form:
+      sun: '日'
+      mon: '月'
+      tue: '火'
+      wed: '水'
+      thu: '木'
+      fri: '金'
+      sat: '土'
+      update: '更新'
+      cancel: 'キャンセル'
+    next_tweet_datetime:
+      tweet_datetime: 'ツイート時間'
+      next_tweet_datetime: '次のツイート時間'
+    crud_menus:
+      confirm_pause_task: 'タスクを休止しますか？'
+      confirm_active_task: 'タスクを再開しますか？'
+      confirm_delete_task: 'タスクを削除しますか？'
+    repeat_timing:
+      sun: '日'
+      mon: '月'
+      tue: '火'
+      wed: '水'
+      thu: '木'
+      fri: '金'
+      sat: '土'
+    finish_btn:
+      finish_task: '完了にする'
+      confirm_finish_task: 'タスクを完了しますか？'
+      done: '完了済'

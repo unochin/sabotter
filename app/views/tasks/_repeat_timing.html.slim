@@ -1,0 +1,18 @@
+div id="js-repeatWdays-#{task.id}" class='d-inline-block'
+  - if task.tweet_sun == 1
+    span.sun.mr-2 = t('.sun')
+  - if task.tweet_mon == 1
+    span.mon.mr-2 = t('.mon')
+  - if task.tweet_tue == 1
+    span.tue.mr-2 = t('.tue')
+  - if task.tweet_wed == 1
+    span.wed.mr-2 = t('.wed')
+  - if task.tweet_thu == 1
+    span.thu.mr-2 = t('.thu')
+  - if task.tweet_fri == 1
+    span.fri.mr-2 = t('.fri')
+  - if task.tweet_sat == 1
+    span.sat.mr-2 = t('.sat')
+
+div id="js-repeatTweetTime-#{task.id}" class='ml-3 d-inline-block'
+  = task.repeat_tweet_time.strftime('%H:%M')

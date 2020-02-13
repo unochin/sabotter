@@ -1,0 +1,4 @@
+- if task.todo?
+  = link_to t('.finish_task'), done_user_task_path(task.id), remote: true, method: :patch, class: 'btn submit-task-btn my-3 py-1', data: { confirm: t('.confirm_finish_task') }
+- if task.done?
+  = t('.done')

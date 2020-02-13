@@ -1,0 +1,4 @@
+| $("#js-newTaskModal").html("
+= escape_javascript(render 'tasks/form', { user: current_user, task: @task })
+| ");
+| $("#js-newTaskModal").modal('show');

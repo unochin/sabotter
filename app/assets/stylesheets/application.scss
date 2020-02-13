@@ -1,0 +1,133 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+}
+body {
+  padding: 30px;
+  background-color: rgb(21, 32, 43);
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: "Hiragino Kaku Gothic ProN",  Meiryo,  sans-serif;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: #fff;
+}
+
+footer {
+  a:link, a:visited, a:hover, a:active {
+    color: #C0C0C0;
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* --------------------------------
+ * button
+ * -------------------------------- */
+.submit-task-btn {
+  color: #fff;
+  background-color: rgb(29, 161, 242);
+}
+
+.click-icon {
+   cursor : pointer;
+}
+.tweet-time {
+  font-size: 1.0rem;
+}
+
+#new-btn {
+  display: inline-block;
+  margin: auto;
+  border-radius: 50%;
+}
+
+#new-btn i {
+  height: 45px;
+  width: 40px;
+  font-size: 40px;
+  text-align: center;
+  line-height: 45px;
+}
+
+/* --------------------------------
+ * modal
+ * -------------------------------- */
+.modal-content {
+  color: #fff;
+  background-color: rgb(21, 32, 43);
+
+}
+.modal-header span {
+color: #fff
+}
+
+
+/* --------------------------------
+ * form
+ * -------------------------------- */
+.taskEditForm {
+  display: none;
+}
+
+form select {
+  height: 2.0rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-size: 0.95rem
+}
+
+/* --------------------------------
+ * flash message
+ * -------------------------------- */
+.top-fixed-flash-message {
+  z-index: 10;
+  position: fixed;
+  width: 80%;
+  top: 1rem;
+  margin: auto;
+}
+
+/* --------------------------------
+ * others
+ * -------------------------------- */
+#icon-img {
+  border-radius: 50%;
+}
+
+.more-info {
+  display: none;
+}
+
+.top-text p {
+  margin-bottom: 3rem;
+}
