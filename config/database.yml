@@ -18,7 +18,7 @@ default: &default
   username: <%= ENV['SABOTTER_DATABASE_USERNAME'] %>
   password: <%= ENV['SABOTTER_DATABASE_PASSWORD'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  socket: /tmp/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
 
 development:
   <<: *default
