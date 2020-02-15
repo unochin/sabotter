@@ -1,2 +1,2 @@
 twitter:
-  callback_url: 
+  callback_url: 'http://52.197.46.148/oauth/callback'
