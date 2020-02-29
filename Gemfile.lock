@@ -190,7 +190,7 @@ GEM
     jwt (2.2.1)
     launchy (2.4.3)
       addressable (~> 2.3)
-    libv8 (7.3.492.27.1-x86_64-darwin-17)
+    libv8 (7.3.492.27.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -235,7 +235,7 @@ GEM
       ast (~> 2.4.0)
     popper_js (1.16.0)
     public_suffix (4.0.3)
-    puma (3.12.2)
+    puma (3.12.3)
     rack (2.1.1)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -428,7 +428,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mini_racer
   mysql2 (>= 0.4.4, < 0.6.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.4)
   rails-i18n
   rails_best_practices
